@@ -24,12 +24,12 @@ namespace TEditXna
 
         public static FileVersionInfo Version { get; set; }
 		
-		public static Version CnVersion { get; } = new Version(1, 0, 1, 0);
+		public static Version CnVersion { get; } = new Version(1, 0, 2, 0);
 
         protected override void OnStartup(StartupEventArgs e)
         {
             ErrorLogging.Initialize();
-            ErrorLogging.Log(string.Format("Starting TEdit {0}", ErrorLogging.Version));
+            ErrorLogging.Log(string.Format("TEdit版本 {0}", ErrorLogging.Version));
             ErrorLogging.Log(string.Format("OS: {0}", Environment.OSVersion));
 
             Assembly asm = Assembly.GetExecutingAssembly();
@@ -40,12 +40,12 @@ namespace TEditXna
                 int directxMajorVersion = DependencyChecker.GetDirectxMajorVersion();
                 if (directxMajorVersion < 11)
                 {
-                    ErrorLogging.Log(string.Format("DirectX {0} unsupported. DirectX 11 or higher is required.", directxMajorVersion));
+                    ErrorLogging.Log(string.Format("DirectX {0} 过旧. 需要 DirectX 11 及更高版本.", directxMajorVersion));
                 }
             }
             catch (Exception ex)
             {
-                ErrorLogging.Log("Failed to verify DirectX Version. TEdit may not run properly.");
+                ErrorLogging.Log("无法验证DirectX版本. TEdit 可能无法正确运行.");
                 ErrorLogging.LogException(ex);
             }
 
@@ -55,7 +55,7 @@ namespace TEditXna
             }
             catch (Exception ex)
             {
-                ErrorLogging.Log("Failed to verify Terraria Paths. TEdit may not run properly.");
+                ErrorLogging.Log("寻找 Terraria 材质路径失败. TEdit 可能无法正确运行.");
                 ErrorLogging.LogException(ex);
             }
 
@@ -65,12 +65,12 @@ namespace TEditXna
 
                 if (!DependencyChecker.VerifyTerraria())
                 {
-                    ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
+                    ErrorLogging.Log("寻找 Terraria 目录失败. 没有可用的材质.");
                 }
                 else
                 {
                     ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
-                }
+                } // 日志文件里的内容, 暂时跳过汉化
             }
             catch (Exception ex)
             {
@@ -121,7 +121,7 @@ namespace TEditXna
             throw (Exception)e.ExceptionObject;
 #else
             ErrorLogging.LogException(e.ExceptionObject);
-            MessageBox.Show(string.Format("An unhandled exception has occured. Please copy the log from:\r\n{0}\r\n to the GitHub Issues list.\r\nThe program will now exit.", ErrorLogging.LogFilePath), "Unhandled Exception");
+            MessageBox.Show(string.Format("UNHANDLED EXCEPTION OCCURRED: 请将这里的错误报告文件 \r\n{0}\r\n 通过 Github Issue 报告. (帮助 -> 反馈问题).\r\n程序现在将退出.", ErrorLogging.LogFilePath), "未处理的异常");
             Current.Shutdown();
 #endif
         }

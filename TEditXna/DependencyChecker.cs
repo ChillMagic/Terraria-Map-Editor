@@ -76,8 +76,8 @@ namespace TEditXna
                 while (!DirectoryHasContentFolder(tempPath) && retry)
                 {
                     if (MessageBox.Show(
-                        string.Format("Directory does not appear to contain Content.\r\nPress retry to pick a new folder or cancel to use \r\n{0}\r\n as your terraria path.", path),
-                        "Terraria Content not Found",
+                        string.Format("当前选择的目录不包含材质.\r\n请重新选择或者取消, 然后将该目录 \r\n{0}\r\n 作为材质路径.", path),
+                        "Terraria 游戏材质未找到",
                         MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
                     {
                         tempPath = BrowseForTerraria();
@@ -156,7 +156,7 @@ namespace TEditXna
         private static string BrowseForTerraria()
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Locate Terraria Folder";
+            fbd.Description = "定位到 Terraria 游戏文件夹";
             fbd.ShowNewFolderButton = false;
             if (fbd.ShowDialog() == DialogResult.OK)
             {

@@ -85,13 +85,13 @@
             <Setter Property="Text" Value="" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Booster">
-                        <Setter Property="Text" Value="Add Booster to existing track, use with Eraser to remove booster only" />
+                        <Setter Property="Text" Value="在轨道上添加加速器(橡皮擦只用于加速器)" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Pressure">
-                        <Setter Property="Text" Value="Add Pressure Plate to existing track, use with Eraser to remove plate only" />
+                        <Setter Property="Text" Value="在轨道上添加压力板(橡皮擦只用于压力板)" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Hammer">
-                        <Setter Property="Text" Value="Use Hammer to modify track ends, intersections and booster direction" />
+                        <Setter Property="Text" Value="用锤子修改轨道方向(跟游戏内锤子一样效果)" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>

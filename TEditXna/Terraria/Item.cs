@@ -59,7 +59,7 @@ namespace TEditXNA.Terraria
             if (_currentItemProperty != null)
                 return _currentItemProperty.Name;
 
-            return "[empty]";
+            return "[нч]";
         }
 
         public byte Prefix

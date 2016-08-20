@@ -14,7 +14,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/point.png"));
-            Name = "点"; // todo: Point 点/Npc坐标?/关键位置点? 注意MainWindow内数据绑定
+            Name = "点"; // 注意MainWindow内数据绑定
             IsActive = false;
             ToolType = ToolType.Npc;
         }
@@ -32,12 +32,12 @@ namespace TEditXna.Editor.Tools
                 }
                 else
                 {
-                    if (string.Equals(_wvm.SelectedPoint, "Spawn", StringComparison.InvariantCultureIgnoreCase))
+                    if (string.Equals(_wvm.SelectedPoint, "出生点", StringComparison.InvariantCultureIgnoreCase))
                     {
                         _wvm.CurrentWorld.SpawnX = e.Location.X;
                         _wvm.CurrentWorld.SpawnY = e.Location.Y;
                     }
-                    else if (string.Equals(_wvm.SelectedPoint, "Dungeon", StringComparison.InvariantCultureIgnoreCase))
+                    else if (string.Equals(_wvm.SelectedPoint, "地牢", StringComparison.InvariantCultureIgnoreCase))
                     {
                         _wvm.CurrentWorld.DungeonX = e.Location.X;
                         _wvm.CurrentWorld.DungeonY = e.Location.Y;

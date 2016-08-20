@@ -893,8 +893,8 @@ namespace TEditXna.ViewModel
                         PixelMap = t.Result;
                         UpdateTitle();
                         Points.Clear();
-                        Points.Add("Spawn");
-                        Points.Add("Dungeon");
+                        Points.Add("出生点"); // PointTool.MouseDown 判定
+						Points.Add("地牢");
                         foreach (NPC npc in CurrentWorld.NPCs)
                         {
                             Points.Add(npc.Name);
@@ -967,8 +967,8 @@ namespace TEditXna.ViewModel
                         PixelMap = t.Result;
                         UpdateTitle();
                         Points.Clear();
-                        Points.Add("Spawn");
-                        Points.Add("Dungeon");
+                        Points.Add("出生点"); // PointTool.MouseDown 判定
+						Points.Add("地牢");
                         foreach (NPC npc in CurrentWorld.NPCs)
                         {
                             Points.Add(npc.Name);

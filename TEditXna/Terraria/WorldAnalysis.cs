@@ -166,7 +166,9 @@ namespace TEditXNA.Terraria
 
         private static void WriteHeader(StreamWriter sb, World world)
         {
-            sb.WriteLine("===SECTION: Header===");
+			sb.WriteLine("下面是调试信息. 我, 拒绝汉化."); // 所以谁想汉化谁就来
+
+			sb.WriteLine("===SECTION: Header===");
             sb.WriteProperty("Compatible Version", world.Version);
             sb.WriteProperty("Section Count", World.SectionCount);
             sb.Write("Frames: ");

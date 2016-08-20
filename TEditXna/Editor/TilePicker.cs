@@ -10,7 +10,7 @@ namespace TEditXna.Editor
     {
         [Description("不变化")]
         NoAction = -2,
-        [Description("Set Solid")] // todo: 找到这些的具体功能
+        [Description("Set Solid")] // todo: 找到这些的具体功能 (疑似在现有版本未出现)
         Solid = -1,
         [Description("Half Block")]
         HalfBlock = 0,

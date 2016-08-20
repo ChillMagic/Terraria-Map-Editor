@@ -88,7 +88,8 @@ namespace TEditXna
             {
                 Assembly asm = Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
-                return fvi.FileVersion;
+	            Version cnv = App.CnVersion;
+                return string.Format("{0} ({1})", fvi.FileVersion, cnv);
             }
         }
     }

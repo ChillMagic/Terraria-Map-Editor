@@ -1,5 +1,6 @@
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
+using TEditXna.Helper;
 using TEditXNA.Terraria;
 
 namespace TEditXna.Editor
@@ -69,20 +70,20 @@ namespace TEditXna.Editor
                         string frameNameKey = World.GetFrameNameKey(_tile.Type, _tile.U, _tile.V);
                         TileName = World.FrameNames.ContainsKey(frameNameKey) ? World.FrameNames[frameNameKey] : tileProperty.Name + "*";
                     }
-                    TileName = _tile.IsActive ? string.Format("{0} ({1})", TileName, _tile.Type) : "[empty]";
+                    TileName = _tile.IsActive ? string.Format("{0} ({1})", TileName, _tile.Type) : "[无]";
                 }
                 else
-                    TileName = string.Format("INVALID TILE ({0})", _tile.Type);
+                    TileName = string.Format("无效物块 ({0})", _tile.Type);
 
                 if (World.WallProperties.Count > _tile.Wall)
                     WallName = string.Format("{0} ({1})", World.WallProperties[_tile.Wall].Name, _tile.Wall);
                 else
-                    WallName = string.Format("INVALID WALL ({0})", _tile.Wall);
+                    WallName = string.Format("无效墙壁 ({0})", _tile.Wall);
 
                 UV = new Vector2Short(_tile.U, _tile.V);
                 if (_tile.LiquidAmount > 0)
                 {
-                    TileExtras = string.Format("{0}: {1}", _tile.LiquidType, _tile.LiquidAmount);
+                    TileExtras = string.Format("{0}: {1}", _tile.LiquidType.GetDisplayName(), _tile.LiquidAmount);
                 }
                 else
                     TileExtras = string.Empty;
@@ -90,44 +91,44 @@ namespace TEditXna.Editor
                 if (_tile.TileColor > 0)
                 {
                     if (_tile.WallColor > 0)
-                        Paint = string.Format("Tile: {0}, Wall: {1}", World.PaintProperties[_tile.TileColor].Name, World.PaintProperties[_tile.WallColor].Name);
+                        Paint = string.Format("物块: {0}, 墙壁: {1}", World.PaintProperties[_tile.TileColor].Name, World.PaintProperties[_tile.WallColor].Name);
                     else
-                        Paint = string.Format("Tile: {0}", World.PaintProperties[_tile.TileColor].Name);
+                        Paint = string.Format("物块: {0}", World.PaintProperties[_tile.TileColor].Name);
                 }
                 else if (_tile.WallColor > 0)
                 {
-                    Paint = string.Format("Wall: {0}", World.PaintProperties[_tile.WallColor].Name);
+                    Paint = string.Format("墙壁: {0}", World.PaintProperties[_tile.WallColor].Name);
                 }
                 else
                 {
-                    Paint = "None";
+                    Paint = "无";
                 }
 
                 if (_tile.InActive)
                 {
-                    TileExtras += " Inactive";
+                    TileExtras += (string.IsNullOrWhiteSpace(TileExtras) ? string.Empty : " ") + "虚化";
                 }
 
                 if (_tile.Actuator)
                 {
-                    TileExtras += " Actuator";
+                    TileExtras += (string.IsNullOrWhiteSpace(TileExtras) ? string.Empty : " ") + "促动器";
                 }
 
                 if (_tile.WireRed || _tile.WireBlue || _tile.WireGreen || _tile.WireYellow)
                 {
-                    if (!string.IsNullOrWhiteSpace(TileExtras))
-                        TileExtras += ", Wire ";
-                    else
-                        TileExtras += "Wire ";
-                    if (_tile.WireRed)
-                        TileExtras += "R";
+	                var clr = string.Empty;
+
+					if (_tile.WireRed)
+                        clr += "红";
                     if (_tile.WireGreen)
-                        TileExtras += "G";
+						clr += "绿";
                     if (_tile.WireBlue)
-                        TileExtras += "B";
+						clr += "蓝";
                     if (_tile.WireYellow)
-                        TileExtras += "Y";
-                }
+						clr += "黄";
+
+					TileExtras += (string.IsNullOrWhiteSpace(TileExtras) ? string.Empty : " ") + clr + "线";
+				}
             }
         }
     }

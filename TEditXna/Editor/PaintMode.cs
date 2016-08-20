@@ -21,7 +21,7 @@ namespace TEditXna.Editor
         Booster,
         [Description("压力板")]
         Pressure,
-        [Description("Hammer")] // todo: Hammer?
+        [Description("锤子")]
         Hammer,
     }
 }

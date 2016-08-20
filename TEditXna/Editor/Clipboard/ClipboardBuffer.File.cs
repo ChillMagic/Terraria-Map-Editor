@@ -535,7 +535,7 @@ namespace TEditXna.Editor.Clipboard
                                     }
                                     else
                                     {
-                                        curChest.Items[j].SetFromName("[empty]");
+                                        curChest.Items[j].SetFromName("[empty]"); // XML文件内
                                     }
 
                                 }

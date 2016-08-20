@@ -61,7 +61,7 @@ namespace TEditXNA.Terraria
 
         private static void WriteHeader(StreamWriter sb, World world)
         {
-            sb.WriteProperty("Compatible Version", world.Version);
+            sb.WriteProperty("兼容版本", world.Version);
             sb.Write(Environment.NewLine);
         }
 
@@ -73,12 +73,12 @@ namespace TEditXNA.Terraria
             int bannercount = 0;
             int uniquecount = 0;
 
-            string bufferBanner = System.String.Empty;
-            string bufferNoBanner = System.String.Empty;
-            string bufferNoKill = System.String.Empty;
+            StringBuilder bufferBanner = new StringBuilder(); // 很难想象之前这里用string
+			StringBuilder bufferNoBanner = new StringBuilder();
+			StringBuilder bufferNoKill = new StringBuilder();
 
-            // Let's explore each monster
-            foreach (int count in world.KilledMobs)
+			// Let's explore each monster
+			foreach (int count in world.KilledMobs)
             {
 
                 if (count == 0)
@@ -87,7 +87,7 @@ namespace TEditXNA.Terraria
                     if (index > 0 && index <= World.TallyNames.Count)
                     {
                         World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                        bufferNoKill += System.String.Format("[{0}] {1}\n", index, World.TallyNames[index]);
+                        bufferNoKill.AppendFormat("[{0}] {1}\n", index, World.TallyNames[index]);
                     }
                         
                 }
@@ -95,23 +95,16 @@ namespace TEditXNA.Terraria
                 {
                     // Monster killed, but banner never obtained (less than 50 kills)
                     World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                    bufferNoBanner += System.String.Format("[{0}] {1} - {2}\n", index, World.TallyNames[index], count);
+                    bufferNoBanner.AppendFormat("[{0}] {1} - {2}\n", index, World.TallyNames[index], count);
                     killcount = killcount + count;
                 }
                 else
                 {
                     // Banners ! 50+ kills for this monster
                     int banners = (int)Math.Floor((double)count / 50f);
-                    string bannerText = System.String.Empty;
-
-                    // "banner" or "bannerS" ?
-                    if (banners > 1)
-                        bannerText = "banners";
-                    else
-                        bannerText = "banner";
 
                     World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                    bufferBanner += System.String.Format("[{0}] {1} - {2} ({3} {4} earned)\n", index, World.TallyNames[index], count, banners, bannerText);
+                    bufferBanner.AppendFormat("[{0}] {1} - {2} (共获取 {3} 个旗帜)\n", index, World.TallyNames[index], count, banners);
                     killcount = killcount + count;
                     uniquecount = uniquecount + 1;
                     bannercount = bannercount + banners;
@@ -120,21 +113,21 @@ namespace TEditXNA.Terraria
             }
 
             // Print lines ...
-            sb.WriteLine("=== Kills ===");
-            sb.WriteLine(bufferBanner);
+            sb.WriteLine("=== 击杀 ===");
+            sb.WriteLine(bufferBanner.ToString());
             sb.Write(Environment.NewLine);
 
-            sb.WriteLine("=== Less than 50 kills ===");
-            sb.WriteLine(bufferNoBanner);
+            sb.WriteLine("=== 未获得旗帜的击杀 (50次以下) ===");
+            sb.WriteLine(bufferNoBanner.ToString());
             sb.Write(Environment.NewLine);
 
-            sb.WriteLine("=== No kills ===");
-            sb.WriteLine(bufferNoKill);
+            sb.WriteLine("=== 没有击杀过 ===");
+            sb.WriteLine(bufferNoKill.ToString());
             sb.Write(Environment.NewLine);
 
-            sb.WriteLine("Total kills counted: {0}", killcount);
-            sb.WriteLine("Total banners awarded: {0}", bannercount);
-            sb.WriteLine("Total unique banners: {0}", uniquecount); // todo: 翻译此处, 如果有必要的话
+            sb.WriteLine("总共杀怪数: {0}", killcount);
+            sb.WriteLine("获取旗帜数: {0}", bannercount);
+            sb.WriteLine("旗帜种类数: {0}", uniquecount);
         }
 
     }
