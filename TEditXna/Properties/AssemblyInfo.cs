@@ -9,7 +9,7 @@ using System.Windows.Markup;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TEdit")]
-[assembly: AssemblyDescription("Terraria Map Editor")]
+[assembly: AssemblyDescription("Terraria 地图编辑器")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TEdit")]

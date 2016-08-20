@@ -14,7 +14,7 @@ namespace TEditXna.Editor.Plugins
         public RemoveAllUnlockedChestsPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Remove All Unlocked Chests";
+            Name = "去除所有未上锁宝箱";
         }
 
         private short[] _lockedChestUs = new short[] { 72, 144, 828, 864, 900, 936, 972 };
@@ -34,7 +34,7 @@ namespace TEditXna.Editor.Plugins
             if (_wvm.CurrentWorld == null) return;
 
             if (
-                MessageBox.Show("Are you sure you wish to delete all unlocked chests?", "Delete Chests",
+                MessageBox.Show("你确定要删除所有未上锁的宝箱吗?", "删除宝箱",
                     MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK)
                 return;
 

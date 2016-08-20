@@ -8,9 +8,9 @@ namespace TEditXna.Editor
 {
     public enum HalfBlockMode
     {
-        [Description("No Change")]
+        [Description("不变化")]
         NoAction = -2,
-        [Description("Set Solid")]
+        [Description("Set Solid")] // todo: 找到这些的具体功能
         Solid = -1,
         [Description("Half Block")]
         HalfBlock = 0,

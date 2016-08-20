@@ -53,16 +53,16 @@ namespace TEditXNA.Terraria
         {
             try
             {
-                OnProgressChanged(world, new ProgressChangedEventArgs(0, "Validating World..."));
+                OnProgressChanged(world, new ProgressChangedEventArgs(0, "验证世界有效性..."));
                 world.Validate();
             }
             catch (ArgumentOutOfRangeException err)
             {
-                string msg = string.Format("There is a problem in your world.\r\n" + 
-                                           "{0}\r\nThis world will not open in Terraria\r\n" + 
-                                           "Would you like to save anyways??\r\n"
+                string msg = string.Format("地图文件有问题.\r\n" + 
+                                           "{0}\r\n它不能在游戏内打开\r\n" + 
+                                           "无论如何, 你还要保存它么??\r\n"
                                            , err.ParamName);
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
+                if (MessageBox.Show(msg, "地图文件错误", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
                     return;
             }
@@ -72,7 +72,7 @@ namespace TEditXNA.Terraria
 
                 if (resetTime)
                 {
-                    OnProgressChanged(world, new ProgressChangedEventArgs(0, "Resetting Time..."));
+                    OnProgressChanged(world, new ProgressChangedEventArgs(0, "重置时间..."));
                     world.ResetTime();
                 }
 
@@ -102,7 +102,7 @@ namespace TEditXNA.Terraria
                         File.Copy(temp, filename, true);
                         // delete temp save file
                         File.Delete(temp);
-                        OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Save Complete."));
+                        OnProgressChanged(null, new ProgressChangedEventArgs(0, "世界保存完毕."));
                     }
                 }
 
@@ -134,12 +134,12 @@ namespace TEditXNA.Terraria
             {
 
                 string msg =
-                    string.Format("There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
+                    string.Format("读取世界文件时发生错误. 这一般是由损坏的文件或新版本的世界文件造成.\r\n\r\n" +
                                   "TEdit v{0}\r\n" +
-                                  "TEdit Max World: {1}    Current World: {2}\r\n\r\n" +
-                                  "Do you wish to force it to load anyway?\r\n\r\n" +
-                                  "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
-                                   "The error is :\r\n{3}\r\n\r\n{4}\r\n"
+                                  "TEdit 最高支持: {1}    当前世界: {2}\r\n\r\n" +
+                                  "你想要强制加载该文件么?\r\n\r\n" +
+                                  "警告: 这样做可能会损坏地图文件或导致程序崩溃.\r\n\r\n" +
+                                   "异常消息 :\r\n{3}\r\n\r\n{4}\r\n"
                     , TEditXna.App.Version.FileVersion, World.CompatibleVersion, curVersion, err.Message, err);
                 if (MessageBox.Show(msg, "World File Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
@@ -231,7 +231,7 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < TilesWide; x++)
             {
                 OnProgressChanged(this,
-                    new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
+                    new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "验证世界文件..."));
 
                 for (int y = 0; y < TilesHigh; y++)
                 {
@@ -317,11 +317,11 @@ namespace TEditXNA.Terraria
                 }
             }
             OnProgressChanged(this,
-                    new ProgressChangedEventArgs(0, "Validating Complete..."));
+                    new ProgressChangedEventArgs(0, "验证完整性..."));
             if (Chests.Count > 1000)
-                throw new ArgumentOutOfRangeException(string.Format("Chest Count is {0} which is greater than 1000",Chests.Count));
+                throw new ArgumentOutOfRangeException(string.Format("宝箱数量为 {0} 且大于1000.",Chests.Count));
             if (Signs.Count > 1000)
-                throw new ArgumentOutOfRangeException(string.Format("Sign Count is {0} which is greater than 1000",Signs.Count));
+                throw new ArgumentOutOfRangeException(string.Format("标牌数量为 {0} 且大于1000.", Signs.Count));
         }
 
         private void FixChand()

@@ -120,8 +120,8 @@ namespace TEditXna
                 {
                     if (_vm.ActiveTool != null)
                     {
-                        if (_vm.ActiveTool.Name == "Paste")
-                            SetActiveTool("Arrow");
+                        if (_vm.ActiveTool.Name == "粘贴") // 工具名
+                            SetActiveTool("光标");
                         else
                             _vm.Selection.IsActive = false;
                     }

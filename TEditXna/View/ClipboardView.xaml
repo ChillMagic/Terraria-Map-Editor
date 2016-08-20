@@ -11,20 +11,20 @@
                 <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Center" Margin="1" Foreground="{DynamicResource TextBrush}"/>
                 <Image Source="{Binding Path=Preview}" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
                 <UniformGrid Columns="3">
-                    <Button Content="Paste" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardSetActiveCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
-                    <Button Content="Export" Margin="1" Padding="3" Command="{Binding DataContext.ExportSchematicCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
-                    <Button Content="Remove" Margin="1" Padding="3" Command="{Binding DataContext.RemoveSchematicCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
-                    <Button Content="Flip X" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardFlipXCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
-                    <Button Content="Flip Y" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardFlipYCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                    <Button Content="粘贴" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardSetActiveCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                    <Button Content="导出" Margin="1" Padding="3" Command="{Binding DataContext.ExportSchematicCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                    <Button Content="删除" Margin="1" Padding="3" Command="{Binding DataContext.RemoveSchematicCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                    <Button Content="水平反转" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardFlipXCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                    <Button Content="垂直翻转" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardFlipYCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
                 </UniformGrid>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <StackPanel Orientation="Vertical" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
-            <Button Content="Empty Clipboard"  Padding="2,4" Margin="2" Command="{Binding EmptyClipboardCommand}" />
-            <Button Content="Import Schematic or Image" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource False}" />
-            <Button Content="Import False Color Image" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource True}" />
+            <Button Content="清空粘贴板"  Padding="2,4" Margin="2" Command="{Binding EmptyClipboardCommand}" />
+            <Button Content="导入简图或图像" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource False}" />
+            <Button Content="导入假彩色图像" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource True}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -35,11 +35,11 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <CheckBox Grid.Row="0" Grid.Column="0" Content="Paste Empty Tiles" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteEmpty}"/>
-                <CheckBox Grid.Row="0" Grid.Column="1" Content="Paste Tiles" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteTiles}"/>
-                <CheckBox Grid.Row="0" Grid.Column="2" Content="Paste Walls" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteWalls}"/>
-                <CheckBox Grid.Row="1" Grid.Column="0" Content="Paste Liquids" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteLiquids}"/>
-                <CheckBox Grid.Row="1" Grid.Column="1" Content="Paste Wires" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteWires}"/>
+                <CheckBox Grid.Row="0" Grid.Column="0" Content="粘贴空白物块" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteEmpty}"/>
+                <CheckBox Grid.Row="0" Grid.Column="1" Content="粘贴物块" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteTiles}"/>
+                <CheckBox Grid.Row="0" Grid.Column="2" Content="粘贴墙壁" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteWalls}"/>
+                <CheckBox Grid.Row="1" Grid.Column="0" Content="粘贴液体" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteLiquids}"/>
+                <CheckBox Grid.Row="1" Grid.Column="1" Content="粘贴电线" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteWires}"/>
             </Grid>
         </StackPanel>
         <ScrollViewer>

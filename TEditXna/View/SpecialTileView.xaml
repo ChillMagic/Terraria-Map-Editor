@@ -98,7 +98,7 @@
     </UserControl.Resources>
     <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" > 
         <GroupBox BorderThickness="0" Style="{StaticResource InstructionsVisiblity}">
-            <TextBlock Text="With the Arrow Tool right click on a sign, chest, mannequin, weapon rack or item frame" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
+            <TextBlock Text="使用光标工具选择标牌, 宝箱, 人体模型, 武器架或物品框." TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource SignVisiblity}">
             <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
@@ -109,7 +109,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="Sign Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="标牌种类: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource SignsCollection}}"
                       SelectedValue="{Binding SelectedSign.SignId, Mode=TwoWay}"
@@ -119,7 +119,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="Sign Text " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="标牌文字 " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                         <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="({0}, {1})">
@@ -133,8 +133,8 @@
                   HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
                   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
                 <UniformGrid Columns="2" Grid.Row="4">
-                    <Button Margin="2" Content="Cancel"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
+                    <Button Margin="2" Content="取消"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
+                    <Button Margin="2" Content="保存" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
         </GroupBox>
@@ -149,11 +149,11 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="Chest Name: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="宝箱名称: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <TextBox Margin="2" Width="100px" Height="20px" MaxLength="20" MaxLines="1" Text="{Binding SelectedChest.Name}" />
                 </StackPanel> 
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="Chest Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="宝箱种类: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource ChestsCollection}}"
                       SelectedValue="{Binding SelectedChest.ChestId, Mode=TwoWay}"
@@ -163,7 +163,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="Chest Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="宝箱内容 " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -173,7 +173,7 @@
                         </TextBlock.Text>
                     </TextBlock>
                 </StackPanel>
-                <ListBox Grid.Row="3" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
+                <ListBox Grid.Row="3" Name="宝箱列表" Padding="5" Foreground="White" MinHeight="200"
                   ItemsSource="{Binding SelectedChest.Items}"
                   ScrollViewer.CanContentScroll="True"
                   VirtualizingStackPanel.IsVirtualizing="True"
@@ -185,14 +185,14 @@
                     </ListBox.ItemContainerStyle>
                 </ListBox>
                 <StackPanel Grid.Row="4">
-                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" />
+                    <TextBlock Text="编辑选中物品" Margin="2" Foreground="{DynamicResource TextBrush}" />
                     <ContentControl ContentTemplate="{StaticResource ChestItemTemplate}"
                             Content="{Binding ElementName=ChestList, Path=SelectedItem}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="5">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveChestCommand}"
+                    <Button Margin="2" Content="取消" Command="{Binding SaveChestCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveChestCommand}"
+                    <Button Margin="2" Content="保存" Command="{Binding SaveChestCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -205,7 +205,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Item Frame Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="物品框内容 " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -218,9 +218,9 @@
                 <ContentControl Grid.Row="1" ContentTemplate="{StaticResource ChestItemTemplate}"
                     Content="{Binding Path=SelectedItemFrame}" />
                 <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="取消" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="保存" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -235,7 +235,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Mannequin Clothing " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="假人服装 " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0:0}, {1:0})">
@@ -246,7 +246,7 @@
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="头部: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
                       SelectedValue="{Binding SelectedMannHead, Mode=TwoWay}"
@@ -256,7 +256,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="Body: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="身体: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
                       SelectedValue="{Binding SelectedMannBody, Mode=TwoWay}"
@@ -266,7 +266,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <TextBlock Text="Legs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="腿部: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
                       SelectedValue="{Binding SelectedMannLegs, Mode=TwoWay}"
@@ -276,9 +276,9 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="4">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveMannCommand}"
+                    <Button Margin="2" Content="取消" Command="{Binding SaveMannCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveMannCommand}"
+                    <Button Margin="2" Content="保存" Command="{Binding SaveMannCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -293,7 +293,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Weapons Rack Item " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="武器架物品 " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0:N}, {1:N})">
@@ -319,9 +319,9 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveRackCommand}"
+                    <Button Margin="2" Content="取消" Command="{Binding SaveRackCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveRackCommand}"
+                    <Button Margin="2" Content="保存" Command="{Binding SaveRackCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>

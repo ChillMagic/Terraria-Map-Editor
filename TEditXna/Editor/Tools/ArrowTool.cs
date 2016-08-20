@@ -17,7 +17,7 @@ namespace TEditXna.Editor.Tools
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/cursor.png"));
             ToolType = ToolType.Pixel;
-            Name = "Arrow";
+            Name = "¹â±ê";
         }
 
         private bool _rightClick;

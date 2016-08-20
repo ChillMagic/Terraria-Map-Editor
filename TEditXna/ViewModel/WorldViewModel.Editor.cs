@@ -46,7 +46,7 @@ namespace TEditXna.ViewModel
             if (!CanPaste())
                 return;
 
-            var pasteTool = Tools.FirstOrDefault(t => t.Name == "Paste");
+            var pasteTool = Tools.FirstOrDefault(t => t.Name == "粘贴"); // 工具名
             if (pasteTool != null)
             {
                 SetActiveTool(pasteTool);
@@ -111,14 +111,14 @@ namespace TEditXna.ViewModel
                         for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                         {
                             Color curBgColor = GetBackgroundColor(y);
-                            OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                            OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "计算颜色中..."));
                             for (int x = 0; x < CurrentWorld.TilesWide; x++)
                             {
                                 PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                             }
                         }
                     }
-                    OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+                    OnProgressChanged(this, new ProgressChangedEventArgs(100, "渲染完毕"));
                 });
         }
 
@@ -146,14 +146,14 @@ namespace TEditXna.ViewModel
                     for (int y = bounded.Top; y < bounded.Bottom; y++)
                     {
                         Color curBgColor = GetBackgroundColor(y);
-                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "计算颜色中..."));
                         for (int x = bounded.Left; x < bounded.Right; x++)
                         {
                             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                         }
                     }
                 }
-                OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+                OnProgressChanged(this, new ProgressChangedEventArgs(100, "渲染完毕"));
             });
         }
 
@@ -586,7 +586,7 @@ namespace TEditXna.ViewModel
                 for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                 {
                     Color curBgColor = GetBackgroundColor(y);
-                    OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                    OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "计算颜色中..."));
                     for (int x = 0; x < CurrentWorld.TilesWide; x++)
                     {
                         if (y > CurrentWorld.TilesHigh || x > CurrentWorld.TilesWide)
@@ -595,7 +595,7 @@ namespace TEditXna.ViewModel
                     }
                 }
             }
-            OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+            OnProgressChanged(this, new ProgressChangedEventArgs(100, "渲染完毕"));
             return pixels;
         }
 

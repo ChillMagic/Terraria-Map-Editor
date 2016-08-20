@@ -14,7 +14,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/point.png"));
-            Name = "Point";
+            Name = "点"; // todo: Point 点/Npc坐标?/关键位置点? 注意MainWindow内数据绑定
             IsActive = false;
             ToolType = ToolType.Npc;
         }

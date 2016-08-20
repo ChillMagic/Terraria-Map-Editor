@@ -561,7 +561,7 @@ namespace TEditXna.Editor.Clipboard
                                 return Load3(filename, true);
                             }
                             else
-                                System.Windows.MessageBox.Show("Verification failed. Some schematic data may be missing.", "Legacy Schematic Version");
+                                System.Windows.MessageBox.Show("验证失败. 一些地图信息可能丢失.", "旧版本简图");
                         }
 
                         br.Close();
@@ -704,9 +704,9 @@ namespace TEditXna.Editor.Clipboard
                     int checky = reader.ReadInt32();
 
                     if (checkName != buffer.Name || checkversion != version || checkx != maxx || checky != maxy)
-                        System.Windows.MessageBox.Show("Verification failed. Some schematic data may be missing.", "Legacy Schematic Version");
+                        System.Windows.MessageBox.Show("验证失败. 一些地图信息可能丢失.", "旧版本简图");
 
-                    return buffer;
+					return buffer;
 
                 }
             }

@@ -112,7 +112,7 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < world.TilesWide; ++x)
             {
                 OnProgressChanged(world,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving UndoTiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "保存物块中...")); // todo: UndoTile的含义
 
                 int rle = 0;
                 for (int y = 0; y < world.TilesHigh; y = y + rle + 1)
@@ -127,11 +127,11 @@ namespace TEditXNA.Terraria
                     bw.Write((short) rle);
                 }
             }
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Chests..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存宝箱中..."));
             WriteChestDataToStreamV1(world.Chests, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存标牌中..."));
             WriteSignDataToStreamV1(world.Signs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存NPC数据..."));
             foreach (NPC curNpc in world.NPCs)
             {
                 bw.Write(true);
@@ -145,7 +145,7 @@ namespace TEditXNA.Terraria
             bw.Write(false);
 
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存NPC名字..."));
 
             world.FixNpcs();
 
@@ -168,7 +168,7 @@ namespace TEditXNA.Terraria
             bw.Write(world.GetNpc(228).Name);
             bw.Write(world.GetNpc(229).Name);
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Validation Data..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存验证信息..."));
             bw.Write(true);
             bw.Write(world.Title);
             bw.Write(world.WorldId);
@@ -500,7 +500,7 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < w.TilesWide; ++x)
             {
                 OnProgressChanged(null,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading UndoTiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "加载物块中..."));
 
                 for (int y = 0; y < w.TilesHigh; y++)
                 {
@@ -514,7 +514,7 @@ namespace TEditXNA.Terraria
                         int rle = reader.ReadInt16();
 
                         if (rle < 0)
-                            throw new ApplicationException("Invalid Tile Data!");
+                            throw new ApplicationException("物块数据无效!");
 
                         if (rle > 0)
                         {
@@ -534,11 +534,11 @@ namespace TEditXNA.Terraria
             if (version < 72)
                 w.FixChand();
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载宝箱中..."));
             w.Chests.Clear();
             ((ObservableCollection<Chest>)w.Chests).AddRange(ReadChestDataFromStreamV1(reader, version));
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载标牌中..."));
             w.Signs.Clear();
 
             foreach (Sign sign in ReadSignDataFromStreamV1(reader))
@@ -550,7 +550,7 @@ namespace TEditXNA.Terraria
             }
 
             w.NPCs.Clear();
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Data..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载NPC数据..."));
             while (reader.ReadBoolean())
             {
                 var npc = new NPC();
@@ -572,7 +572,7 @@ namespace TEditXNA.Terraria
 
             if (version >= 31)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Names..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载NPC名字..."));
                 w.CharacterNames.Add(new NpcName(17, reader.ReadString()));
                 w.CharacterNames.Add(new NpcName(18, reader.ReadString()));
                 w.CharacterNames.Add(new NpcName(19, reader.ReadString()));
@@ -633,7 +633,7 @@ namespace TEditXNA.Terraria
             }
             if (version >= 7)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Validating File..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "验证世界文件..."));
                 bool validation = reader.ReadBoolean();
                 string checkTitle = reader.ReadString();
                 int checkVersion = reader.ReadInt32();
@@ -645,10 +645,10 @@ namespace TEditXNA.Terraria
                 {
                     reader.Close();
                     throw new FileLoadException(
-                        string.Format("Error reading world file validation parameters! {0}", filename));
+                        string.Format("读取世界文件验证参数时错误! {0}", filename));
                 }
             }
-            OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Load Complete."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "世界加载完毕."));
         }
 
         public static IEnumerable<Sign> ReadSignDataFromStreamV1(BinaryReader b)

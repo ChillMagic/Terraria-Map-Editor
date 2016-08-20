@@ -13,7 +13,7 @@ namespace TEditXna.Editor.Plugins
         public FindChestWithPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Find Chests With";
+            Name = "Ãıº˛≤È’“±¶œ‰";
         }
 
         public override void Execute()

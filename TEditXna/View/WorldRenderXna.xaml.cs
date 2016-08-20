@@ -1894,7 +1894,7 @@ namespace TEditXna.View
                 position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
                                        1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
             }
-            if (_wvm.ActiveTool.Name == "Sprite" && _wvm.SelectedSprite != null)
+            if (_wvm.ActiveTool.Name == "物件" && _wvm.SelectedSprite != null) // 工具名
             {
                 var texsize = World.TileProperties[_wvm.SelectedSprite.Tile].TextureGrid;
                 if (texsize.X != 16 || texsize.Y != 16)

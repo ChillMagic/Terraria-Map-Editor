@@ -88,9 +88,10 @@ namespace TEditXna.ViewModel
         private ICommand _viewLogCommand;
         private string _windowTitle;
         private ICommand _checkUpdatesCommand;
+		private ICommand _reportIssueCommand;
 
 
-        public ICommand CheckUpdatesCommand
+		public ICommand CheckUpdatesCommand
         {
             get { return _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand<bool>(CheckVersion)); }
         }
@@ -194,6 +195,11 @@ namespace TEditXna.ViewModel
             get { return _launchWikiCommand ?? (_launchWikiCommand = new RelayCommand(() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki"))); }
         }
 
+	    public ICommand ReportIssueCommand
+	    {
+			get { return _reportIssueCommand ?? (_reportIssueCommand = new RelayCommand(() => LaunchUrl("https://github.com/mistzzt/Terraria-Map-Editor/issues"))); }
+	    }
+
         /* SBLogic - catch exception if browser can't be launched */
         private void LaunchUrl(string url)
         {
@@ -204,7 +210,7 @@ namespace TEditXna.ViewModel
             }
             catch
             {
-                result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation);
+                result = System.Windows.Forms.MessageBox.Show("无法打开外部浏览器. 要复制链接到粘贴板么?", "链接无法打开", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation);
             }
 
             // Just in case
@@ -587,9 +593,11 @@ namespace TEditXna.ViewModel
         {
             Assembly asm = Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
+	        Version cnv = App.CnVersion;
 
-            WindowTitle = string.Format("TEdit v{0}.{1}.{2}.{3} {4}",
+            WindowTitle = string.Format("TEdit v{0}.{1}.{2}.{3} (CNv{4}.{5}.{6}.{7}) {8}",
                 fvi.ProductMajorPart, fvi.ProductMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart,
+				cnv.Major, cnv.Minor, cnv.Build, cnv.Revision,
                 Path.GetFileName(_currentFile));
         }
 
@@ -601,7 +609,7 @@ namespace TEditXna.ViewModel
                 {
                     using (var Client = new WebClient())
                     {
-                        byte[] dl = Client.DownloadData("http://www.binaryconstruct.com/downloads/teditversion.txt");
+                        byte[] dl = Client.DownloadData("https://raw.githubusercontent.com/mistzzt/Terraria-Map-Editor/master/cnversion.txt");
 
                         string vers = Encoding.Unicode.GetString(dl);
                         string[] verstrimmed = vers.Split('v');
@@ -622,10 +630,10 @@ namespace TEditXna.ViewModel
                         if (!int.TryParse(split[2], out build)) return null;
                         if ((split.Length == 4) && (split[3].Length > 0) && (!int.TryParse(split[3], out revis))) return null;
 
-                        if (major > App.Version.ProductMajorPart) return true;
-                        if (minor > App.Version.ProductMinorPart) return true;
-                        if (build > App.Version.ProductBuildPart) return true;
-                        if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
+                        if (major > App.CnVersion.Major) return true;
+                        if (minor > App.CnVersion.Minor) return true;
+                        if (build > App.CnVersion.Build) return true;
+                        if ((revis != -1) && (revis > App.CnVersion.Revision)) return true;
                     }
                 }
                 catch (Exception)
@@ -639,15 +647,15 @@ namespace TEditXna.ViewModel
 
                 if (isoutofdate == null)
                 {
-                    MessageBox.Show("Unable to check version.", "Update Check Failed");
+                    MessageBox.Show("无法检测版本.", "更新检测失败");
                 }
                 else if (isoutofdate == true)
                 {
-                    if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("现在有TEdit汉化版的可用更新. 要下载么?", "更新提示", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         try
                         {
-                            Process.Start("http://www.binaryconstruct.com/downloads/");
+                            Process.Start("https://github.com/mistzzt/Terraria-Map-Editor/releases");
                         }
                         catch { }
                         
@@ -656,7 +664,7 @@ namespace TEditXna.ViewModel
                 else
                 {
                     if (!auto)
-                        MessageBox.Show("TEdit is up to date.", "Update");
+                        MessageBox.Show("当前版本为最新版本.", "更新提示");
                 }
 
             }, TaskFactoryHelper.UiTaskScheduler);
@@ -680,10 +688,10 @@ namespace TEditXna.ViewModel
         {
             if (this.CurrentWorld == null) return;
             var sfd = new SaveFileDialog();
-            sfd.DefaultExt = "Text File|*.txt";
-            sfd.Filter = "Text Files|*.txt";
-            sfd.FileName = this.CurrentWorld.Title + " Analysis.txt";
-            sfd.Title = "Save world analysis.";
+            sfd.DefaultExt = "文本文件|*.txt";
+            sfd.Filter = "文本文件|*.txt";
+            sfd.FileName = this.CurrentWorld.Title + " 分析.txt";
+            sfd.Title = "保存世界分析日志.";
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
             {
@@ -701,10 +709,10 @@ namespace TEditXna.ViewModel
         {
             if (this.CurrentWorld == null) return;
             var sfd = new SaveFileDialog();
-            sfd.DefaultExt = "Text File|*.txt";
-            sfd.Filter = "Text Files|*.txt";
-            sfd.FileName = this.CurrentWorld.Title + " Tally.txt";
-            sfd.Title = "Save world analysis.";
+            sfd.DefaultExt = "文本文件|*.txt";
+            sfd.Filter = "文本文件|*.txt";
+            sfd.FileName = this.CurrentWorld.Title + " 战况.txt";
+            sfd.Title = "保存世界分析日志.";
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
             {
@@ -771,7 +779,7 @@ namespace TEditXna.ViewModel
         {
             if (ActiveTool != tool)
             {
-                if (tool.Name == "Paste" && !CanPaste())
+                if (tool.Name == "粘贴" && !CanPaste()) // 工具名
                     return;
 
                 if (ActiveTool != null)
@@ -826,9 +834,9 @@ namespace TEditXna.ViewModel
         private void OpenWorld()
         {
             var ofd = new OpenFileDialog();
-            ofd.Filter = "Terraria World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
-            ofd.DefaultExt = "Terraria World File|*.wld";
-            ofd.Title = "Load Terraria World File";
+            ofd.Filter = "Terraria 世界文件|*.wld|Terraria 世界备份|*.bak|TEdit 备份文件|*.TEdit";
+            ofd.DefaultExt = "Terraria 世界文件|*.wld";
+            ofd.Title = "加载 Terraria 世界存档文件";
             ofd.InitialDirectory = DependencyChecker.PathToWorlds;
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
@@ -858,7 +866,7 @@ namespace TEditXna.ViewModel
                     var cloneTile = new Tile();
                     for (int y = 0; y < w.TilesHigh; y++)
                     {
-                        OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating World..."));
+                        OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "生成世界中..."));
 
                         if (y == (int)w.GroundLevel - 10)
                             cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.None, LiquidAmount = 0, Type = 2, U = -1, V = -1, Wall = 2 };
@@ -893,7 +901,7 @@ namespace TEditXna.ViewModel
                         }
                         MinimapImage = RenderMiniMap.Render(CurrentWorld);
                         _loadTimer.Stop();
-                        OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("加载世界耗时 {0} 秒.", _loadTimer.Elapsed.TotalSeconds)));
                         _saveTimer.Start();
                     }, TaskFactoryHelper.UiTaskScheduler);
             }
@@ -913,8 +921,8 @@ namespace TEditXna.ViewModel
         private void SaveWorldAs()
         {
             var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
+            sfd.Filter = "Terraria 世界文件|*.wld|TEdit 备份文件|*.TEdit";
+            sfd.Title = "世界文件另存为";
             sfd.InitialDirectory = DependencyChecker.PathToWorlds;
             if ((bool)sfd.ShowDialog())
             {
@@ -927,7 +935,7 @@ namespace TEditXna.ViewModel
         {
             if (CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
             {
-                MessageBoxResult overwrite = MessageBox.Show(_currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?", "World Modified", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                MessageBoxResult overwrite = MessageBox.Show(_currentWorld.Title + " 在上次保存后在外部被修改.\r\n你确定要覆盖保存么?", "世界文件被外部修改", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 if (overwrite.Equals(MessageBoxResult.Cancel))
                     return;
             }
@@ -967,7 +975,7 @@ namespace TEditXna.ViewModel
                         }
                         MinimapImage = RenderMiniMap.Render(CurrentWorld);
                         _loadTimer.Stop();
-                        OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("加载世界耗费 {0} 秒.", _loadTimer.Elapsed.TotalSeconds)));
                         _saveTimer.Start();
                     }
                     _loadTimer.Stop();

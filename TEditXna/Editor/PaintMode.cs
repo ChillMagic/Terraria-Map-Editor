@@ -4,24 +4,24 @@ namespace TEditXna.Editor
 {
     public enum PaintMode
     {
-        [Description("Tile/Wall")]
+        [Description("物块/墙壁")]
         TileAndWall,
-        [Description("Wire")]
+        [Description("电线")]
         Wire,
-        [Description("Liquid")]
+        [Description("液体")]
         Liquid,
-        [Description("Track")]
+        [Description("轨道")]
         Track,
     }
     public enum TrackMode
     {
-        [Description("Track")]
+        [Description("轨道")]
         Track,
-        [Description("Booster")]
+        [Description("加速器")]
         Booster,
-        [Description("PressurePlate")]
+        [Description("压力板")]
         Pressure,
-        [Description("Hammer")]
+        [Description("Hammer")] // todo: Hammer?
         Hammer,
     }
 }

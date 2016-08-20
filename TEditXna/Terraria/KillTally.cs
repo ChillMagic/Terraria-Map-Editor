@@ -134,7 +134,7 @@ namespace TEditXNA.Terraria
 
             sb.WriteLine("Total kills counted: {0}", killcount);
             sb.WriteLine("Total banners awarded: {0}", bannercount);
-            sb.WriteLine("Total unique banners: {0}", uniquecount);
+            sb.WriteLine("Total unique banners: {0}", uniquecount); // todo: 翻译此处, 如果有必要的话
         }
 
     }

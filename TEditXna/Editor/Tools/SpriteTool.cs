@@ -21,7 +21,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/sprite.png"));
-            Name = "Sprite";
+            Name = "物件"; // todo: Sprite 小精灵/物件
             IsActive = false;
             ToolType = ToolType.Pixel;
         }

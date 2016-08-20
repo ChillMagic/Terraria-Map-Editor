@@ -87,7 +87,7 @@ namespace TEditXna.Editor.Clipboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "简图文件错误!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             if (buffer != null)

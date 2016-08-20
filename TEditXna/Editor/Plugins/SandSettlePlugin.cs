@@ -10,7 +10,7 @@ namespace TEditXna.Editor.Plugins
         public SandSettlePlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Settle Sand";
+            Name = "Æ½ºâÉ³×Ó";
         }
 
         public override void Execute()

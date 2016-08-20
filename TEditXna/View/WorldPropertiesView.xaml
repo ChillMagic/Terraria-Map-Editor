@@ -12,31 +12,31 @@
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
         <enum:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="0">None</enum:EnumItem>
-            <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
-            <enum:EnumItem Value="2">Frost Legion</enum:EnumItem>
-            <enum:EnumItem Value="3">Pirate Invasion</enum:EnumItem>
-            <enum:EnumItem Value="4">Martian Madness</enum:EnumItem>
+            <enum:EnumItem Value="0">无</enum:EnumItem>
+            <enum:EnumItem Value="1">哥布林侵略</enum:EnumItem>
+            <enum:EnumItem Value="2">冰霜军团</enum:EnumItem>
+            <enum:EnumItem Value="3">海盗入侵</enum:EnumItem>
+            <enum:EnumItem Value="4">火星的失常</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="moonTypeList" EnumType="{x:Type System:Byte}" SortBy="Value" >
-            <enum:EnumItem Value="0">Grey</enum:EnumItem>
-            <enum:EnumItem Value="1">Orange</enum:EnumItem>
-            <enum:EnumItem Value="2">Ringed</enum:EnumItem>
+            <enum:EnumItem Value="0">灰月</enum:EnumItem>
+            <enum:EnumItem Value="1">橙色</enum:EnumItem>
+            <enum:EnumItem Value="2">圆月</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTier1List" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="107">Cobalt</enum:EnumItem>
-            <enum:EnumItem Value="221">Palladium</enum:EnumItem>
+            <enum:EnumItem Value="-1">未指明</enum:EnumItem>
+            <enum:EnumItem Value="107">钴蓝</enum:EnumItem>
+            <enum:EnumItem Value="221">钯金</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTier2List" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="108">Mythril</enum:EnumItem>
-            <enum:EnumItem Value="222">Orichalcum</enum:EnumItem>
+            <enum:EnumItem Value="-1">未指明</enum:EnumItem>
+            <enum:EnumItem Value="108">秘银</enum:EnumItem>
+            <enum:EnumItem Value="222">山铜</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTier3List" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="111">Adamantite</enum:EnumItem>
-            <enum:EnumItem Value="223">Titanium</enum:EnumItem>
+            <enum:EnumItem Value="-1">未指明</enum:EnumItem>
+            <enum:EnumItem Value="111">精金</enum:EnumItem>
+            <enum:EnumItem Value="223">钛金</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="TreeStyleList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="0">0</enum:EnumItem>
@@ -116,45 +116,45 @@
             <enum:EnumItem Value="73">73</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="anglerQuestList" EnumType="{x:Type System:Int32}" SortBy="Value">
-            <enum:EnumItem Value="0">Batfish</enum:EnumItem>
-            <enum:EnumItem Value="1">Bumblebee Tuna</enum:EnumItem>
-            <enum:EnumItem Value="2">Catfish</enum:EnumItem>
-            <enum:EnumItem Value="3">Cloudfish</enum:EnumItem>
-            <enum:EnumItem Value="4">Cursedfish</enum:EnumItem>
-            <enum:EnumItem Value="5">Dirtfish</enum:EnumItem>
-            <enum:EnumItem Value="6">Dynamite Fish</enum:EnumItem>
-            <enum:EnumItem Value="7">Eater of Plankton</enum:EnumItem>
-            <enum:EnumItem Value="8">Fallen Starfish</enum:EnumItem>
-            <enum:EnumItem Value="9">The Fish of Cthulhu</enum:EnumItem>
-            <enum:EnumItem Value="10">Fishotron</enum:EnumItem>
-            <enum:EnumItem Value="11">Harpyfish</enum:EnumItem>
-            <enum:EnumItem Value="12">Hungerfish</enum:EnumItem>
-            <enum:EnumItem Value="13">Ichorfish</enum:EnumItem>
-            <enum:EnumItem Value="14">Jewelfish</enum:EnumItem>
-            <enum:EnumItem Value="15">Mirage Fish</enum:EnumItem>
-            <enum:EnumItem Value="16">Mutant Flinxfin</enum:EnumItem>
-            <enum:EnumItem Value="17">Pengfish</enum:EnumItem>
-            <enum:EnumItem Value="18">Pixiefish</enum:EnumItem>
-            <enum:EnumItem Value="19">Spiderfish</enum:EnumItem>
-            <enum:EnumItem Value="20">Tundra Trout</enum:EnumItem>
-            <enum:EnumItem Value="21">Unicorn Fish</enum:EnumItem>
-            <enum:EnumItem Value="22">Guide Voodoo Fish</enum:EnumItem>
-            <enum:EnumItem Value="23">Wyverntail</enum:EnumItem>
-            <enum:EnumItem Value="24">Zombie Fish</enum:EnumItem>
-            <enum:EnumItem Value="25">Amanitia Fungifin</enum:EnumItem>
-            <enum:EnumItem Value="26">Angelfish</enum:EnumItem>
-            <enum:EnumItem Value="27">Bloody Manowar</enum:EnumItem>
-            <enum:EnumItem Value="28">Bonefish</enum:EnumItem>
-            <enum:EnumItem Value="29">Bunnyfish</enum:EnumItem>
-            <enum:EnumItem Value="30">Cap'n Tunabeard</enum:EnumItem>
-            <enum:EnumItem Value="31">Clownfish</enum:EnumItem>
-            <enum:EnumItem Value="32">Demonic Hellfish</enum:EnumItem>
-            <enum:EnumItem Value="33">Derpfish</enum:EnumItem>
-            <enum:EnumItem Value="34">Fishron</enum:EnumItem>
-            <enum:EnumItem Value="35">Infected Scabbardfish</enum:EnumItem>
-            <enum:EnumItem Value="36">Mudfish</enum:EnumItem>
-            <enum:EnumItem Value="37">Slimefish</enum:EnumItem>
-            <enum:EnumItem Value="38">Tropical Barracuda</enum:EnumItem>
+            <enum:EnumItem Value="0">蝙蝠鱼</enum:EnumItem>
+            <enum:EnumItem Value="1">黄蜂鱼</enum:EnumItem>
+            <enum:EnumItem Value="2">猫鱼</enum:EnumItem>
+            <enum:EnumItem Value="3">白云鱼</enum:EnumItem>
+            <enum:EnumItem Value="4">咒火鱼</enum:EnumItem>
+            <enum:EnumItem Value="5">泥土鱼</enum:EnumItem>
+            <enum:EnumItem Value="6">雷管鱼</enum:EnumItem>
+            <enum:EnumItem Value="7">吞噬鱼</enum:EnumItem>
+            <enum:EnumItem Value="8">落星鱼</enum:EnumItem>
+            <enum:EnumItem Value="9">克苏鲁之鱼</enum:EnumItem>
+            <enum:EnumItem Value="10">骸骨鱼</enum:EnumItem>
+            <enum:EnumItem Value="11">鹰身女妖鱼</enum:EnumItem>
+            <enum:EnumItem Value="12">饥饿鱼</enum:EnumItem>
+            <enum:EnumItem Value="13">脓血鱼</enum:EnumItem>
+            <enum:EnumItem Value="14">水母鱼</enum:EnumItem>
+            <enum:EnumItem Value="15">幻影鱼</enum:EnumItem>
+            <enum:EnumItem Value="16">变种雪球鱼</enum:EnumItem>
+            <enum:EnumItem Value="17">海豚鱼</enum:EnumItem>
+            <enum:EnumItem Value="18">精灵鱼</enum:EnumItem>
+            <enum:EnumItem Value="19">蜘蛛鱼</enum:EnumItem>
+            <enum:EnumItem Value="20">冻土鳟鱼</enum:EnumItem>
+            <enum:EnumItem Value="21">独角兽鱼</enum:EnumItem>
+            <enum:EnumItem Value="22">向导巫毒鱼</enum:EnumItem>
+            <enum:EnumItem Value="23">龙尾鱼</enum:EnumItem>
+            <enum:EnumItem Value="24">僵尸鱼</enum:EnumItem>
+            <enum:EnumItem Value="25">毒菌鱼</enum:EnumItem>
+            <enum:EnumItem Value="26">天使鱼</enum:EnumItem>
+            <enum:EnumItem Value="27">鲜血水母</enum:EnumItem>
+            <enum:EnumItem Value="28">骸骨鱼</enum:EnumItem>
+            <enum:EnumItem Value="29">兔鱼</enum:EnumItem>
+            <enum:EnumItem Value="30">海盗鱼</enum:EnumItem>
+            <enum:EnumItem Value="31">小丑鱼</enum:EnumItem>
+            <enum:EnumItem Value="32">地狱恶魔鱼</enum:EnumItem>
+            <enum:EnumItem Value="33">巨眼鱼</enum:EnumItem>
+            <enum:EnumItem Value="34">猪鲨</enum:EnumItem>
+            <enum:EnumItem Value="35">被感染的带鱼</enum:EnumItem>
+            <enum:EnumItem Value="36">淤泥鱼</enum:EnumItem>
+            <enum:EnumItem Value="37">史莱姆鱼</enum:EnumItem>
+            <enum:EnumItem Value="38">热带梭鱼</enum:EnumItem>
         </enum:EnumItemList>
 
         <Style x:Key="TimeBackgroundStyle" TargetType="{x:Type Rectangle}">
@@ -170,10 +170,10 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style TargetType="{x:Type CheckBox}" x:Key="Boss2" BasedOn="{StaticResource {x:Type CheckBox}}">
-            <Setter Property="Content" Value="Eater of Worlds" />
+            <Setter Property="Content" Value="世界吞噬者" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding CurrentWorld.IsCrimson}" Value="True">
-                        <Setter Property="Content" Value="Brain of Cthulhu" />
+                        <Setter Property="Content" Value="克苏鲁之脑" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -183,14 +183,14 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1.6*" />
             </tedit:AutoGrid.ColumnDefinitions>
-            <TextBlock Text="World Name" HorizontalAlignment="Right" />
+            <TextBlock Text="世界名称" HorizontalAlignment="Right" />
             <TextBox Text="{Binding CurrentWorld.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Text="World Id" HorizontalAlignment="Right" />
+            <TextBlock Text="世界Id" HorizontalAlignment="Right" />
             <TextBlock Text="{Binding CurrentWorld.WorldId}" HorizontalAlignment="Left" />
-            <TextBlock Text="Revision" HorizontalAlignment="Right" />
+            <TextBlock Text="文件版本" HorizontalAlignment="Right" />
             <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Moon Phase" HorizontalAlignment="Right" />
+            <TextBlock Text="月相" HorizontalAlignment="Right" />
             <DockPanel>
                 <!--<TextBox Width="30" DockPanel.Dock="Right" Height="16">
                     <TextBox.Text>
@@ -204,175 +204,175 @@
                 <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="7" Width="128" />
                 <TextBox Text="{Binding CurrentWorld.MoonPhase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="16" DockPanel.Dock="Right" />
         </DockPanel>
-        <TextBlock Text="Moon Style" HorizontalAlignment="Right" />
+        <TextBlock Text="月亮样式" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource moonTypeList}" SelectedValue="{Binding CurrentWorld.MoonType, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.BloodMoon}" Content="Blood Moon" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.BloodMoon}" Content="血月" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.IsEclipse}" Content="Is Eclipse" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.IsEclipse}" Content="日蚀" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Time" HorizontalAlignment="Right" />
+            <TextBlock Text="时间" HorizontalAlignment="Right" />
             <Grid Height="20">
                 <Rectangle Style="{DynamicResource TimeBackgroundStyle}" VerticalAlignment="Stretch" Margin="0,1"/>
                 <Slider Value="{Binding CurrentWorld.Time, Mode=TwoWay}"  VerticalAlignment="Center"  HorizontalAlignment="Stretch" Minimum="0" Maximum="54000" />
             </Grid>
             <TextBlock />
-            <CheckBox x:Name="dayCheckBox" Content="Is Day Time" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding Path=CurrentWorld.DayTime, Mode=TwoWay}"/>
+            <CheckBox x:Name="dayCheckBox" Content="当前白天" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding Path=CurrentWorld.DayTime, Mode=TwoWay}"/>
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.FastForwardTime}" Content="Use Sundial" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Sundial Cooldown" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.FastForwardTime}" Content="使用日晷" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="日晷冷却时间" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.SundialCooldown, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.SundialCooldown, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="127" SmallChange="1" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Rain" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding Path=CurrentWorld.TempRaining, Mode=TwoWay}" Content="Is Raining" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
-            <TextBlock Text="Rain Time" HorizontalAlignment="Right" />
+            <TextBlock Text="雨天" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding Path=CurrentWorld.TempRaining, Mode=TwoWay}" Content="正在下雨" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+            <TextBlock Text="下雨时间" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.TempRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="999999" SmallChange="1" />
             </DockPanel>
-            <TextBlock Text="Max Rain" HorizontalAlignment="Right" />
+            <TextBlock Text="最大雨量" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.TempMaxRain, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
             </DockPanel>
-            <TextBlock Text="Slime Rain Time" HorizontalAlignment="Right" />
+            <TextBlock Text="史莱姆雨时间" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.SlimeRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.SlimeRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Number Clouds" HorizontalAlignment="Right" />
+            <TextBlock Text="云量" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.NumClouds, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.NumClouds, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="128" />
             </DockPanel>
-            <TextBlock Text="Wind Speed" HorizontalAlignment="Right" />
+            <TextBlock Text="风速" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.WindSpeedSet, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.WindSpeedSet, Mode=TwoWay}" VerticalAlignment="Center" Minimum="-16000" Maximum="16000" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Surface Level" HorizontalAlignment="Right" />
+            <TextBlock Text="地表高度" HorizontalAlignment="Right" />
             <DockPanel>
                 <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
                 <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
             </DockPanel>
-            <TextBlock Text="Cavern Level" HorizontalAlignment="Right" />
+            <TextBlock Text="洞穴高度" HorizontalAlignment="Right" />
             <DockPanel>
                 <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
                 <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Meteor" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor}" Content="Spawn Meteor" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Difficulty" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Hardmode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="陨石" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor}" Content="生成陨石" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="难易度" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="肉山后" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.ExpertMode}" Content="Expert Mode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.ExpertMode}" Content="专家模式" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="Is Crimson" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Altars Smashed" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="血腥化世界" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="打碎祭坛" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.AltarCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.AltarCount, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
             </DockPanel>
-            <TextBlock Text="Orbs Smashed" HorizontalAlignment="Right" />
+            <TextBlock Text="光球/心脏破坏" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.ShadowOrbCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.ShadowOrbCount, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
             </DockPanel>
-        <TextBlock Text="Hardmode Ore 1" HorizontalAlignment="Right" />
+        <TextBlock Text="肉后矿 1" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource oreTier1List}" SelectedValue="{Binding CurrentWorld.OreTier1, Mode=TwoWay}" SelectedValuePath="Value" />
-        <TextBlock Text="Hardmode Ore 2" HorizontalAlignment="Right" />
+        <TextBlock Text="肉后矿 2" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource oreTier2List}" SelectedValue="{Binding CurrentWorld.OreTier2, Mode=TwoWay}" SelectedValuePath="Value" />
-        <TextBlock Text="Hardmode Ore 3" HorizontalAlignment="Right" />
+        <TextBlock Text="肉后矿 3" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource oreTier3List}" SelectedValue="{Binding CurrentWorld.OreTier3, Mode=TwoWay}" SelectedValuePath="Value" />
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Pre-Hardmode" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedSlimeKingBoss}" Content="King Slime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="Eye of Cthulhu" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="肉山前" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedSlimeKingBoss}" Content="史莱姆王" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="Boss 打败情况" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="邪眼" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
             <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2}" Style="{StaticResource Boss2}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="Queen Bee" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="蜂后" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3}" Content="Skeletron" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3}" Content="骷髅" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Wall of Flesh" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="肉山" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Hardmode" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2}" Content="The Twins" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="The Destroyer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="肉山后" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2}" Content="双子魔眼" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="Boss 打败情况" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="机械破坏者" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3}" Content="Skeletron Prime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3}" Content="机械骷髅王" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss}" Content="Plantera" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss}" Content="世纪之花" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss}" Content="Golem" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss}" Content="石巨人" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="Duke Fishron" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="猪鲨公爵" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedLunaticCultist}" Content="Lunatic Cultist" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedLunaticCultist}" Content="远古信徒" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMoonlord}" Content="Moon Lord" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMoonlord}" Content="月之主" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Event" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenTree}" Content="Mourning Wood" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenKing}" Content="Pumpking" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="事件" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenTree}" Content="哀鸣木" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="Boss 打败情况" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenKing}" Content="南瓜王" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasTree}" Content="Everscream" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasTree}" Content="圣诞树妖" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedSanta}" Content="Santa-NK1" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedSanta}" Content="圣诞坦克" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasQueen}" Content="Ice Queen" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasQueen}" Content="冰雪女王" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="Flying Dutchman" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="飞翔荷兰人号" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialSolar}" Content="Solar Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialSolar}" Content="日光塔" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialNebula}" Content="Nebula Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialNebula}" Content="星云塔" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialVortex}" Content="Vortex Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialVortex}" Content="漩涡塔" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="Stardust Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="星尘塔" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="NPC's Saved" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="Saved Goblin Tinkerer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="拯救 NPC" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="哥布林工匠" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedMech}" Content="Saved Mechanic" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedMech}" Content="电工" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedWizard}" Content="Saved Wizard" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedWizard}" Content="巫师" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedStylist}" Content="Saved Stylist" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedStylist}" Content="发型师" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedTaxCollector}" Content="Saved Tax Collector" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedTaxCollector}" Content="收税官" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedAngler}" Content="Saved Angler" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Angler Mission" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedAngler}" Content="渔夫" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="渔夫任务" HorizontalAlignment="Right" />
             <ComboBox Height="20" ItemsSource="{StaticResource anglerQuestList}" SelectedValue="{Binding CurrentWorld.AnglerQuest, Mode=TwoWay}" SelectedValuePath="Value" />
         <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Invasions Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins}" Content="Goblin Army" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="完成入侵" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins}" Content="哥布林军队" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedFrost}" Content="Frost Legion" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedFrost}" Content="冰霜军团" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedPirates}" Content="Pirate Invasion" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedPirates}" Content="海盗入侵" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMartians}" Content="Martian Madness" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Invasion Type" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMartians}" Content="火星的失常" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="当前入侵种类" HorizontalAlignment="Right" />
             <ComboBox Height="20" ItemsSource="{StaticResource invasionTypeList}" SelectedValue="{Binding CurrentWorld.InvasionType, Mode=TwoWay}" SelectedValuePath="Value" />
-        <TextBlock Text="Invasion Size" HorizontalAlignment="Right" />
+        <TextBlock Text="入侵规模" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.InvasionSize, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.InvasionSize, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="1000" />
             </DockPanel>
-            <TextBlock Text="Invasion X Target" HorizontalAlignment="Right" />
+            <TextBlock Text="入侵X目标" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.InvasionX, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.InvasionX, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
@@ -400,7 +400,7 @@
             <TextBox Text="{Binding CurrentWorld.TreeX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Tree Styles" HorizontalAlignment="Right" />
+            <TextBlock Text="树木样式" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle0, Mode=TwoWay}" SelectedValuePath="Value" />
@@ -431,7 +431,7 @@
             <TextBox Text="{Binding CurrentWorld.CaveBackX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Cave Styles" HorizontalAlignment="Right" />
+            <TextBlock Text="洞穴样式" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle0, Mode=TwoWay}" SelectedValuePath="Value" />
@@ -441,67 +441,67 @@
         </DockPanel>
         <Separator Grid.ColumnSpan="2" />
         <DockPanel>
-            <TextBlock Text="Deep Ice BG" HorizontalAlignment="Right" />
+            <TextBlock Text="深冰霜环境 BG" HorizontalAlignment="Right" />
             </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource IceBackStyleList}" SelectedValue="{Binding CurrentWorld.IceBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Deep Jungle BG" HorizontalAlignment="Right" />
+            <TextBlock Text="深丛林环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource JungleBackStyleList}" SelectedValue="{Binding CurrentWorld.JungleBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Hell BG" HorizontalAlignment="Right" />
+            <TextBlock Text="地狱环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource HellBackStyleList}" SelectedValue="{Binding CurrentWorld.HellBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Forest BG" HorizontalAlignment="Right" />
+            <TextBlock Text="树林环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Corrupt BG" HorizontalAlignment="Right" />
+            <TextBlock Text="腐化环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCorruption, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Jungle BG" HorizontalAlignment="Right" />
+            <TextBlock Text="丛林环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgJungle, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Snow BG" HorizontalAlignment="Right" />
+            <TextBlock Text="雪原环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource SnowBGStyleList}" SelectedValue="{Binding CurrentWorld.BgSnow, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Hallow BG" HorizontalAlignment="Right" />
+            <TextBlock Text="神圣环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgHallow, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Crimson BG" HorizontalAlignment="Right" />
+            <TextBlock Text="血腥环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CrimsonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Desert BG" HorizontalAlignment="Right" />
+            <TextBlock Text="沙漠环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgDesert, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="Ocean BG" HorizontalAlignment="Right" />
+            <TextBlock Text="海洋环境 BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
             <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource OceanBGStyleList}" SelectedValue="{Binding CurrentWorld.BgOcean, Mode=TwoWay}" SelectedValuePath="Value" />

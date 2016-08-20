@@ -4,9 +4,9 @@ namespace TEditXna.Editor
 {
     public enum BrushShape
     {
-        [Description("Rectangle")]
+        [Description("矩形")]
         Square,
-        [Description("Ellipse")]
+        [Description("椭圆")]
         Round,
     }
 }

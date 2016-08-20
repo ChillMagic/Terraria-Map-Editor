@@ -15,7 +15,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paste.png"));
-            Name = "Paste";
+            Name = "粘贴";
             IsActive = false;
             ToolType = ToolType.Pixel;
         }
@@ -30,7 +30,7 @@ namespace TEditXna.Editor.Tools
             if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
             {
                
-                base._wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "Arrow"));
+                base._wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "光标")); // 工具名
             }
         }
 

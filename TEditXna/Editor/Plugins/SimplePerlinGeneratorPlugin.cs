@@ -13,7 +13,7 @@ namespace TEditXna.Editor.Plugins
             : base(worldViewModel)
         {
             _noiseGenerator = new PerlinNoise(1);
-            Name = "Simple Ore Generator";
+            Name = "简单矿石生成";
         }
 
         public override void Execute()

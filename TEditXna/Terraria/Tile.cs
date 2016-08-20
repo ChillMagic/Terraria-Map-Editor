@@ -9,21 +9,30 @@ namespace TEditXNA.Terraria
 
     public enum BrickStyle : byte
     {
-        [Description("Full Brick")]
+        [Description("全砖")]
         Full = 0x0,
-        HalfBrick = 0x1,
-        SlopeTopRight = 0x2,
-        SlopeTopLeft = 0x3,
-        SlopeBottomRight = 0x4,
-        SlopeBottomLeft = 0x5,
+		[Description("半砖")]
+		HalfBrick = 0x1,
+		[Description("右上斜")]
+		SlopeTopRight = 0x2,
+		[Description("左上斜")]
+		SlopeTopLeft = 0x3,
+		[Description("右下斜")]
+		SlopeBottomRight = 0x4,
+		[Description("左下斜")]
+		SlopeBottomLeft = 0x5,
     }
 
     public enum LiquidType : byte
     {
-        None = 0x0,
-        Water = 0x01,
-        Lava = 0x02,
-        Honey = 0x03
+		[Description("无")]
+		None = 0x0,
+		[Description("清水")]
+		Water = 0x01,
+		[Description("岩浆")]
+		Lava = 0x02,
+		[Description("蜂蜜")]
+		Honey = 0x03
     }
 
     public enum TileType : int

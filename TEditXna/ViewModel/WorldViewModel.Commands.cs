@@ -78,16 +78,16 @@ namespace TEditXna.ViewModel
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
                     CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId});
                     Points.Add(name);
-                    MessageBox.Show(string.Format("{0} added to spawn.", name), "NPC Added");
+                    MessageBox.Show(string.Format("{0} 已被添加到出生点位置.", name), "添加NPC完毕");
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("{0} is already on the map.", name), "NPC Exists");
+                    MessageBox.Show(string.Format("地图上已经有一个 {0} 了.", name), "NPC已存在");
                 }
             }
             else
             {
-                MessageBox.Show(string.Format("Choose an NPC. NPC {0} not found.", npcId), "NPC Error");
+                MessageBox.Show(string.Format("选择一个NPC. 未找到 NPC {0}.", npcId), "NPC错误");
             }
         }
 
@@ -104,11 +104,11 @@ namespace TEditXna.ViewModel
                 {
                     CurrentWorld.NPCs.Remove(npc);
                     Points.Remove(npc.Name);
-                    MessageBox.Show(string.Format("{1} ({0}) removed.", npc.Name, npc.DisplayName), "NPC Removed");
+                    MessageBox.Show(string.Format("删除 {1} ({0}) 完毕.", npc.Name, npc.DisplayName), "NPC清除完毕");
                 }
                 catch (InvalidOperationException)
                 {
-                    MessageBox.Show(string.Format("{1} ({0}) was not on the map.", npc.Name, npc.DisplayName), "NPC Doesn't Exist");
+                    MessageBox.Show(string.Format("{1} ({0}) 并不在地图上.", npc.Name, npc.DisplayName), "NPC不存在");
                 }
             }
         }
@@ -243,7 +243,7 @@ namespace TEditXna.ViewModel
 
         public void Update()
         {
-            string url = "http://www.binaryconstruct.com/downloads/";
+            string url = "https://github.com/mistzzt/Terraria-Map-Editor/releases";
             try { System.Diagnostics.Process.Start(url); }
             catch { }
         }
@@ -379,9 +379,9 @@ namespace TEditXna.ViewModel
         {
 
             var ofd = new OpenFileDialog();
-            ofd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png|Bitmap Image (Real TileColor)|*.bmp";
-            ofd.DefaultExt = "TEdit Schematic File|*.TEditSch";
-            ofd.Title = "Import TEdit Schematic File";
+            ofd.Filter = "TEdit 简图文件|*.TEditSch|Png 图片 (真彩)|*.png|位图 (真彩)|*.bmp";
+            ofd.DefaultExt = "TEdit 简图文件|*.TEditSch";
+            ofd.Title = "导入简图文件";
             ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
             if (!Directory.Exists(ofd.InitialDirectory))
                 Directory.CreateDirectory(ofd.InitialDirectory);
@@ -395,8 +395,8 @@ namespace TEditXna.ViewModel
         private void ExportSchematicFile(ClipboardBuffer buffer)
         {
             var sfd = new SaveFileDialog();
-            sfd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png";
-            sfd.Title = "Export Schematic File";
+            sfd.Filter = "TEdit 简图文件|*.TEditSch|Png 图片 (真彩)|*.png";
+            sfd.Title = "导出简图文件";
             sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
             if (!Directory.Exists(sfd.InitialDirectory))
                 Directory.CreateDirectory(sfd.InitialDirectory);
@@ -409,7 +409,7 @@ namespace TEditXna.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error Saving Schematic");
+                    MessageBox.Show(ex.Message, "保存简图失败");
                 }
                 
             }

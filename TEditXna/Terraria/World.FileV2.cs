@@ -44,35 +44,35 @@ namespace TEditXNA.Terraria
 
             int[] sectionPointers = new int[SectionCount];
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "保存标头...")); // todo: head
             sectionPointers[0] = SaveSectionHeader(world, bw);
             sectionPointers[1] = SaveHeaderFlags(world, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save UndoTiles..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "保存物块..."));
             sectionPointers[2] = SaveTiles(world.Tiles, world.TilesWide, world.TilesHigh, bw);
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Chests..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存宝箱..."));
             sectionPointers[3] = SaveChests(world.Chests, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Signs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存标牌..."));
             sectionPointers[4] = SaveSigns(world.Signs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save NPCs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存NPC..."));
             sectionPointers[5] = SaveNPCs(world.NPCs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Mobs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存怪物..."));
             sectionPointers[5] = SaveMobs(world.Mobs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存物块单位..."));
             sectionPointers[6] = SaveTileEntities(world, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存压力板..."));
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);            
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存末尾信息..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "保存完毕."));
         }
 
         public static int SaveTiles(Tile[,] tiles, int maxX, int maxY, BinaryWriter bw)
         {
             for (int x = 0; x < maxX; x++)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Saving Tiles..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "保存物块中..."));
 
 
                 for (int y = 0; y < maxY; y++)
@@ -576,28 +576,28 @@ namespace TEditXNA.Terraria
             // reset the stream
             b.BaseStream.Position = (long)0;
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "加载文件头信息..."));
             // read section pointers and tile frame data
             if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
-                throw new FileFormatException("Invalid File Format Section");
+                throw new FileFormatException("文件格式部分无效!");
 
             TileFrameImportant = tileFrameImportant;
 
             // we should be at the end of the first section
             if (b.BaseStream.Position != sectionPointers[0])
-                throw new FileFormatException("Unexpected Position: Invalid File Format Section");
+                throw new FileFormatException("Unexpected Position: 文件格式部分无效!");
 
             // Load the flags
             LoadHeaderFlags(b, w, sectionPointers[1]);
             if (b.BaseStream.Position != sectionPointers[1])
                 throw new FileFormatException("Unexpected Position: Invalid Header Flags");
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading UndoTiles..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "加载物块信息..."));
             w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh);
             if (b.BaseStream.Position != sectionPointers[2])
                 throw new FileFormatException("Unexpected Position: Invalid Tile Data");
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载宝箱中..."));
 
             foreach (Chest chest in LoadChestData(b))
             {
@@ -611,7 +611,7 @@ namespace TEditXNA.Terraria
             if (b.BaseStream.Position != sectionPointers[3])
                 throw new FileFormatException("Unexpected Position: Invalid Chest Data");
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载标牌中..."));
 
             foreach (Sign sign in LoadSignData(b))
             {
@@ -625,16 +625,16 @@ namespace TEditXNA.Terraria
             if (b.BaseStream.Position != sectionPointers[4])
                 throw new FileFormatException("Unexpected Position: Invalid Sign Data");
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPCs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载NPC中..."));
             LoadNPCsData(b, w);
             if(w.Version >= 140)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Mobs..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载怪物中..."));
                 LoadMobsData(b, w);
                 if (b.BaseStream.Position != sectionPointers[5])
                     throw new FileFormatException("Unexpected Position: Invalid Mob and NPC Data");
 
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Tile Entities Section..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载物件部分..."));
                 LoadTileEntities(b, w);
                 if (b.BaseStream.Position != sectionPointers[6])
                     throw new FileFormatException("Unexpected Position: Invalid Tile Entities Section");
@@ -651,10 +651,10 @@ namespace TEditXNA.Terraria
                     throw new FileFormatException("Unexpected Position: Invalid Weighted Pressure Plate Section");
 			}
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Verifying File..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "验证文件中..."));
             LoadFooter(b, w);
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Load Complete."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "加载完毕."));
         }
 
         public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY)
@@ -665,7 +665,7 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < maxX; x++)
             {
                 OnProgressChanged(null,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Loading UndoTiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "加载物块中..."));
 
                 for (int y = 0; y < maxY; y++)
                 {
