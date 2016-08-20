@@ -609,9 +609,9 @@ namespace TEditXna.ViewModel
                 {
                     using (var Client = new WebClient())
                     {
-                        byte[] dl = Client.DownloadData("https://raw.githubusercontent.com/mistzzt/Terraria-Map-Editor/master/cnversion.txt");
+                        byte[] dl = Client.DownloadData("https://raw.githubusercontent.com/mistzzt/Terraria-Map-Editor/cn_master/cnversion.txt");
 
-                        string vers = Encoding.Unicode.GetString(dl);
+                        string vers = Encoding.UTF8.GetString(dl);
                         string[] verstrimmed = vers.Split('v');
 
                         if (verstrimmed.Length != 2) return null;
