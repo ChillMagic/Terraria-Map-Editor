@@ -173,7 +173,7 @@
                         </TextBlock.Text>
                     </TextBlock>
                 </StackPanel>
-                <ListBox Grid.Row="3" Name="宝箱列表" Padding="5" Foreground="White" MinHeight="200"
+                <ListBox Grid.Row="3" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
                   ItemsSource="{Binding SelectedChest.Items}"
                   ScrollViewer.CanContentScroll="True"
                   VirtualizingStackPanel.IsVirtualizing="True"
