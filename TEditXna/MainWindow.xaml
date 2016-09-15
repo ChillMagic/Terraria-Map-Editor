@@ -198,29 +198,29 @@
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>
-            <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
+            <Expander Header="选项" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
                 <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                    <TabItem Header="World Properties" >
+                    <TabItem Header="世界属性" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="Special Tiles">
+                    <TabItem Header="特殊物块">
                         <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
-                    <TabItem Header="Sprites">
+                    <TabItem Header="物件">
                         <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
-                    <TabItem Header="Clipboard">
+                    <TabItem Header="粘贴板">
                         <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
-                    <TabItem Header="Npc Names" >
+                    <TabItem Header="NPC名称" >
                         <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                     </TabItem>
-                    <TabItem Header="Analysis">
+                    <TabItem Header="分析">
                         <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
                     </TabItem>
-                    <TabItem Header="Tally">
+                    <TabItem Header="记录">
                         <View:KillTallyView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
                 </TabControl>
