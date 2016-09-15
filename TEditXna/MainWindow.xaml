@@ -126,33 +126,6 @@
                 <Button Content="{StaticResource TB_CopyIcon}" ToolTip="复制" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="24" Width="24" />
                 <View:ToolSelectorView />
             </StackPanel>
-            <Expander Header="选项" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
-                <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                    <TabItem Header="世界属性" >
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-                        </ScrollViewer>
-                    </TabItem>
-                    <TabItem Header="特殊物块">
-                        <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="物件">
-                        <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="粘贴板">
-                        <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="NPC名称" >
-                        <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                    </TabItem>
-                    <TabItem Header="分析">
-                        <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                    </TabItem>
-                    <TabItem Header="记录">
-                        <View:KillTallyView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </TabItem>
-                </TabControl>
-            </Expander>
             <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Border DockPanel.Dock="Right" BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
                     <Grid  Width="200" Height="75">
@@ -225,6 +198,33 @@
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>
+            <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
+                <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                    <TabItem Header="World Properties" >
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Special Tiles">
+                        <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
+                    <TabItem Header="Sprites">
+                        <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </TabItem>
+                    <TabItem Header="Clipboard">
+                        <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </TabItem>
+                    <TabItem Header="Npc Names" >
+                        <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    </TabItem>
+                    <TabItem Header="Analysis">
+                        <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                    </TabItem>
+                    <TabItem Header="Tally">
+                        <View:KillTallyView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
+                </TabControl>
+            </Expander>
             <View:WorldRenderXna HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </DockPanel>
     </Grid>
