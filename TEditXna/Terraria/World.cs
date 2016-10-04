@@ -68,7 +68,7 @@ namespace TEditXNA.Terraria
             }
             lock (_fileLock)
             {
-                
+
 
                 if (resetTime)
                 {
@@ -95,7 +95,7 @@ namespace TEditXNA.Terraria
                         // make a backup of current file if it exists
                         if (File.Exists(filename))
                         {
-                            string backup = filename + ".TEdit";
+                            string backup = filename + "." + DateTime.Now.ToString("yyyyMMddHHmmss") + ".TEdit";
                             File.Copy(filename, backup, true);
                         }
                         // replace actual file with temp save file

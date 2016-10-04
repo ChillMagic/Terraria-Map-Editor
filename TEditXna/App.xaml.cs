@@ -24,12 +24,12 @@ namespace TEditXna
 
         public static FileVersionInfo Version { get; set; }
 		
-		public static Version CnVersion { get; } = new Version(1, 2, 1, 0);
+		public static Version CnVersion { get; } = new Version(1, 3, 0, 0);
 
         protected override void OnStartup(StartupEventArgs e)
         {
             ErrorLogging.Initialize();
-            ErrorLogging.Log(string.Format("TEdit版本 {0}", ErrorLogging.Version));
+            ErrorLogging.Log(string.Format("TEdit版本 {0} (CN: {1})", ErrorLogging.Version, CnVersion.ToString(3)));
             ErrorLogging.Log(string.Format("OS: {0}", Environment.OSVersion));
 
             Assembly asm = Assembly.GetExecutingAssembly();

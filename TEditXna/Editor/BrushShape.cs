@@ -8,9 +8,9 @@ namespace TEditXna.Editor
         Square,
         [Description("椭圆")]
         Round,
-        [Description("Diagonal Right")]
+        [Description("右倾斜线")]
         Right,
-        [Description("Diagonal Left")]
+        [Description("左倾斜线")]
         Left,
     }
 }
