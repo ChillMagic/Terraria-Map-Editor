@@ -130,7 +130,7 @@ namespace TEditXna.ViewModel
                 if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
                 var sprite = (Sprite)o;
-                
+
                 string [] _spriteFilterSplit = _spriteFilter.Split('/');
                 foreach (string _spriteWord in _spriteFilterSplit)
                 {
@@ -221,7 +221,7 @@ namespace TEditXna.ViewModel
                     System.Windows.Clipboard.SetText(url);
                 }
             }
-            catch { } 
+            catch { }
         }
 
 
@@ -633,7 +633,7 @@ namespace TEditXna.ViewModel
                         if (major > App.CnVersion.Major) return true;
                         if (minor > App.CnVersion.Minor) return true;
                         if (build > App.CnVersion.Build) return true;
-                        if ((revis != -1) && (revis > App.CnVersion.Revision)) return true;
+                        // if ((revis != -1) && (revis > App.CnVersion.Revision)) return true;
                     }
                 }
                 catch (Exception)
@@ -658,7 +658,7 @@ namespace TEditXna.ViewModel
                             Process.Start("https://github.com/mistzzt/Terraria-Map-Editor/releases");
                         }
                         catch { }
-                        
+
                     }
                 }
                 else
@@ -674,7 +674,7 @@ namespace TEditXna.ViewModel
         private ICommand _analyzeWorldSaveCommand;
         private ICommand _tallyCountCommand;
         private ICommand _tallyCountSaveCommand;
-         
+
 
         /// <summary>
         /// Relay command to execute AnalyzeWorldSave.
@@ -696,7 +696,7 @@ namespace TEditXna.ViewModel
             if (sfd.ShowDialog() == true)
             {
                 TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld, sfd.FileName);
-               
+
             }
         }
 
