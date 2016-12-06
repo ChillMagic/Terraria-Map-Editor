@@ -112,7 +112,7 @@ namespace TEditXna.Editor.Clipboard
 
                     if (Tile.IsChest(curTile.Type))
                     {
-                        if (buffer.GetChestAtTile(x, y) == null)
+                        if (buffer.GetChestAtTile(x, y, curTile.Type) == null)
                         {
                             var data = world.GetChestAtTile(x + area.X, y + area.Y);
                             if (data != null)
@@ -135,6 +135,20 @@ namespace TEditXna.Editor.Clipboard
                                 newSign.X = x;
                                 newSign.Y = y;
                                 buffer.Signs.Add(newSign);
+                            }
+                        }
+                    }
+                    if (Tile.IsTileEntity(curTile.Type))
+                    {
+                        if (buffer.GetTileEntityAtTile(x, y) == null)
+                        {
+                            var data = world.GetTileEntityAtTile(x + area.X, y + area.Y);
+                            if (data != null)
+                            {
+                                var newEntity = data.Copy();
+                                newEntity.PosX = (short)x;
+                                newEntity.PosY = (short)y;
+                                buffer.TileEntities.Add(newEntity);
                             }
                         }
                     }
@@ -239,13 +253,25 @@ namespace TEditXna.Editor.Clipboard
                                 }
                             }
 
+                            // Remove overwritten tile entity data
+                            if (Tile.IsTileEntity(world.Tiles[x + anchor.X, y + anchor.Y].Type))
+                            {
+                                var data = world.GetTileEntityAtTile(x + anchor.X, y + anchor.Y);
+                                if (data != null)
+                                {
+                                    //    add this function to UndoManager
+                                    //    _wvm.UndoManager.Buffer.TileEntities.Add(data);
+                                    world.TileEntities.Remove(data);
+                                }
+                            }
+
 
                             // Add new chest data
                             if (Tile.IsChest(curTile.Type))
                             {
                                 if (world.GetChestAtTile(x + anchor.X, y + anchor.Y) == null)
                                 {
-                                    var data = buffer.GetChestAtTile(x, y);
+                                    var data = buffer.GetChestAtTile(x, y, curTile.Type);
                                     if (data != null) // allow? chest copying may not work...
                                     {
                                         // Copied chest
@@ -279,6 +305,23 @@ namespace TEditXna.Editor.Clipboard
                                     else
                                     {
                                         world.Signs.Add(new Sign(x + anchor.X, y + anchor.Y, string.Empty));
+                                    }
+                                }
+                            }
+
+                            // Add new tile entity data
+                            if (Tile.IsTileEntity(curTile.Type))
+                            {
+                                if (world.GetTileEntityAtTile(x + anchor.X, y + anchor.Y) == null)
+                                {
+                                    var data = buffer.GetTileEntityAtTile(x, y);
+                                    if (data != null)
+                                    {
+                                        // Copied sign
+                                        var newEntity = data.Copy();
+                                        newEntity.PosX = (short)(x + anchor.X);
+                                        newEntity.PosY = (short)(y + anchor.Y);
+                                        world.TileEntities.Add(newEntity);
                                     }
                                 }
                             }
