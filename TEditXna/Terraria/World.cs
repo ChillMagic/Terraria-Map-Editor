@@ -172,21 +172,20 @@ namespace TEditXNA.Terraria
 
         public Chest GetChestAtTile(int x, int y)
         {
-            Tile tile = Tiles[x, y];
-            if (tile.Type == 88)
-                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1 || c.X == x - 2) && (c.Y == y || c.Y == y - 1));
-            else
-                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+            Vector2Int32 anchor = GetAnchor(x,y);
+            return Chests.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
         }
 
         public Sign GetSignAtTile(int x, int y)
         {
-            return Signs.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+            Vector2Int32 anchor = GetAnchor(x,y);
+            return Signs.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
         }
 
         public TileEntity GetTileEntityAtTile(int x, int y)
         {
-        	return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1));
+            Vector2Int32 anchor = GetAnchor(x,y);
+            return TileEntities.FirstOrDefault(c => (c.PosX == anchor.X) && (c.PosY == anchor.Y));
         }
 
         public Vector2Int32 GetMannequin(int x, int y)
@@ -212,34 +211,19 @@ namespace TEditXNA.Terraria
             return new Vector2Int32(x, y);
         }
 
-        public Vector2Int32 GetChestAnchor(int x, int y)
+        // find upper left corner of sprites
+        public Vector2Int32 GetAnchor(int x, int y)
         {
             Tile tile = Tiles[x, y];
-            int xShift = 0;
-            int yShift = 0;
-
-            if (tile.Type == 88)
+            TileProperty tileprop = TileProperties[tile.Type];
+            if (tileprop.IsFramed && (tileprop.FrameSize.X > 1 || tileprop.FrameSize.Y > 1))
             {
-                xShift = tile.U % 54 / 18;
-                yShift = tile.V % 36 / 18;
+                int xShift = tile.U % ((tileprop.TextureGrid.X + 2) * tileprop.FrameSize.X) / (tileprop.TextureGrid.X + 2);
+                int yShift = tile.V % ((tileprop.TextureGrid.Y + 2) * tileprop.FrameSize.Y) / (tileprop.TextureGrid.Y + 2);
+                return new Vector2Int32(x - xShift, y - yShift);
             }
             else
-            {
-                xShift = tile.U % 36 / 18;
-                yShift = tile.V % 36 / 18;
-            }
-
-            return new Vector2Int32(x - xShift, y - yShift);
-        }
-
-        public Vector2Int32 GetSignAnchor(int x, int y)
-        {
-            Tile tile = Tiles[x, y];
-
-            int xShift = tile.U % 36 / 18;
-            int yShift = tile.V % 36 / 18;
-
-            return new Vector2Int32(x - xShift, y - yShift);
+                return new Vector2Int32(x, y);
         }
 
         public void Validate()
@@ -256,38 +240,8 @@ namespace TEditXNA.Terraria
                     if (curTile.Type == (int)TileType.IceByRod)
                         curTile.IsActive = false;
 
-                    // TODO: Let Validate handle these
-                    //validate chest entry exists
-                    if (Tile.IsChest(curTile.Type))
-                    {
-                        if (GetChestAtTile(x, y) == null)
-                        {
-                            Chests.Add(new Chest(x, y));
-                        }
-                    }
-                    //validate sign entry exists
-                    else if (Tile.IsSign(curTile.Type))
-                    {
-                        if (GetSignAtTile(x, y) == null)
-                        {
-                            Signs.Add(new Sign(x, y, string.Empty));
-                        }
-                    }
-                    //validate logic sensors
-                    else if (curTile.Type == 423)
-                    {
-                    	if (GetTileEntityAtTile(x, y) == null)
-                    	{
-                    		TileEntity TE = new TileEntity();
-                    		TE.Type = 2;
-                    		TE.PosX = (short)x;
-                    		TE.PosY = (short)y;
-                    		TE.On = false;
-                    		TE.LogicCheck = (byte)(curTile.V / 18 + 1);
-                    		TE.Id = TileEntities.Count;
-                    		TileEntities.Add(TE);
-                    	}
-                    }
+                    ValSpecial(x, y);
+
                 }
             }
 
@@ -332,6 +286,15 @@ namespace TEditXNA.Terraria
                     if (removed) break;
                 }
             }
+
+            foreach (TileEntity tileEntity in TileEntities.ToArray())
+            {
+                int x = tileEntity.PosX;
+                int y = tileEntity.PosY;
+                if (!Tiles[x, y].IsActive || !Tile.IsTileEntity(Tiles[x, y].Type))
+                    TileEntities.Remove(tileEntity);
+            }
+
             OnProgressChanged(this,
                     new ProgressChangedEventArgs(0, "验证完整性..."));
             if (Chests.Count > 1000)
@@ -339,7 +302,56 @@ namespace TEditXNA.Terraria
             if (Signs.Count > 1000)
                 throw new ArgumentOutOfRangeException(string.Format("标牌数量为 {0} 且大于1000.", Signs.Count));
         }
-
+        public void ValSpecial(int x, int y)
+        {
+            Tile curTile = Tiles[x, y];
+            //validate chest entry exists
+            if (Tile.IsChest(curTile.Type))
+            {
+                if (GetChestAtTile(x, y) == null)
+                {
+                    Chests.Add(new Chest(x, y));
+                }
+            }
+            //validate sign entry exists
+            else if (Tile.IsSign(curTile.Type))
+            {
+                if (GetSignAtTile(x, y) == null)
+                {
+                    Signs.Add(new Sign(x, y, string.Empty));
+                }
+            }
+            //validate TileEntity
+            else if (Tile.IsTileEntity(curTile.Type))
+            {
+                if (GetTileEntityAtTile(x, y) == null)
+                {
+                    TileEntity TE = new TileEntity();
+                    TE.PosX = (short)x;
+                    TE.PosY = (short)y;
+                    TE.Id = TileEntities.Count;
+                    if (curTile.Type == (int)TileType.Dummy)
+                    {
+                        TE.Type = 0;
+                        TE.Npc = -1;
+                    }
+                    else if (curTile.Type == (int)TileType.ItemFrame)
+                    {
+                        TE.Type = 1;
+                        TE.NetId = 0;
+                        TE.Prefix = 0;
+                        TE.StackSize = 0;
+                    }
+                    else
+                    {
+                        TE.Type = 2;
+                        TE.On = false;
+                        TE.LogicCheck = (byte)(curTile.V / 18 + 1);
+                    }
+                    TileEntities.Add(TE);
+                }
+            }
+        }
         private void FixChand()
         {
             for (int x = 5; x < TilesWide - 5; x++)
