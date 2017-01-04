@@ -24,7 +24,7 @@ namespace TEditXna
 
         public static FileVersionInfo Version { get; set; }
 		
-		public static Version CnVersion { get; } = new Version(1, 5, 0, 0);
+		public static Version CnVersion { get; } = new Version(1, 6, 0, 0);
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -62,13 +62,13 @@ namespace TEditXna
 
             try
             {
-
                 if (!DependencyChecker.VerifyTerraria())
                 {
                     ErrorLogging.Log("寻找 Terraria 目录失败. 没有可用的材质.");
                 }
                 else
                 {
+                    ErrorLogging.Log(string.Format("Terraria v{0}", DependencyChecker.GetTerrariaVersion() ?? "not found"));
                     ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
                 } // 日志文件里的内容, 暂时跳过汉化
             }
