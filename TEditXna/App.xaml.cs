@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Windows;
 using TEdit.MvvmLight.Threading;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
@@ -19,18 +15,18 @@ namespace TEditXna
     {
         static App()
         {
-            GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize();
+            DispatcherHelper.Initialize();
         }
 
         public static FileVersionInfo Version { get; set; }
 		
-		public static Version CnVersion { get; } = new Version(1, 6, 0, 0);
+		public static Version CnVersion { get; } = new Version(1, 7, 0, 0);
 
         protected override void OnStartup(StartupEventArgs e)
         {
             ErrorLogging.Initialize();
-            ErrorLogging.Log(string.Format("TEdit版本 {0} (CN: {1})", ErrorLogging.Version, CnVersion.ToString(3)));
-            ErrorLogging.Log(string.Format("OS: {0}", Environment.OSVersion));
+            ErrorLogging.Log($"TEdit版本 {ErrorLogging.Version} (CN: {CnVersion.ToString(3)})");
+            ErrorLogging.Log($"OS: {Environment.OSVersion}");
 
             Assembly asm = Assembly.GetExecutingAssembly();
             Version = FileVersionInfo.GetVersionInfo(asm.Location);
@@ -40,7 +36,7 @@ namespace TEditXna
                 int directxMajorVersion = DependencyChecker.GetDirectxMajorVersion();
                 if (directxMajorVersion < 11)
                 {
-                    ErrorLogging.Log(string.Format("DirectX {0} 过旧. 需要 DirectX 11 及更高版本.", directxMajorVersion));
+                    ErrorLogging.Log($"DirectX {directxMajorVersion} 过旧. 需要 DirectX 11 及更高版本.");
                 }
             }
             catch (Exception ex)
@@ -68,9 +64,9 @@ namespace TEditXna
                 }
                 else
                 {
-                    ErrorLogging.Log(string.Format("Terraria v{0}", DependencyChecker.GetTerrariaVersion() ?? "not found"));
-                    ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
-                } // 日志文件里的内容, 暂时跳过汉化
+                    ErrorLogging.Log($"Terraria v{DependencyChecker.GetTerrariaVersion() ?? "not found"}");
+                    ErrorLogging.Log($"Terraria Data Path: {DependencyChecker.PathToContent}");
+                }
             }
             catch (Exception ex)
             {
@@ -81,8 +77,8 @@ namespace TEditXna
 
             if (e.Args != null && e.Args.Count() > 0)
             {
-                ErrorLogging.Log(string.Format("Command Line Open: {0}", e.Args[0]));
-                this.Properties["OpenFile"] = e.Args[0];
+                ErrorLogging.Log($"Command Line Open: {e.Args[0]}");
+                Properties["OpenFile"] = e.Args[0];
             }
 
             if (AppDomain.CurrentDomain.SetupInformation.ActivationArguments != null &&
@@ -98,7 +94,7 @@ namespace TEditXna
                     var uri = new Uri(fname);
                     fname = uri.LocalPath;
 
-                    this.Properties["OpenFile"] = fname;
+                    Properties["OpenFile"] = fname;
                 }
                 catch (Exception ex)
                 {

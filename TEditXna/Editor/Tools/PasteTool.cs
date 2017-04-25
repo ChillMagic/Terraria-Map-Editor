@@ -30,7 +30,7 @@ namespace TEditXna.Editor.Tools
             if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
             {
                
-                base._wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "光标")); // 工具名
+                _wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "光标")); // 工具名
             }
         }
 

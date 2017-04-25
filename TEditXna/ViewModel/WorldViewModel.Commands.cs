@@ -8,7 +8,6 @@ using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using TEditXNA.Terraria;
-using TEditXNA.Terraria.Objects;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
 using TEditXna.Editor.Plugins;
@@ -78,16 +77,16 @@ namespace TEditXna.ViewModel
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
                     CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId});
                     Points.Add(name);
-                    MessageBox.Show(string.Format("{0} 已被添加到出生点位置.", name), "添加NPC完毕");
+                    MessageBox.Show($"{name} 已被添加到出生点位置.", "添加NPC完毕");
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("地图上已经有一个 {0} 了.", name), "NPC已存在");
+                    MessageBox.Show($"地图上已经有一个 {name} 了.", "NPC已存在");
                 }
             }
             else
             {
-                MessageBox.Show(string.Format("选择一个NPC. 未找到 NPC {0}.", npcId), "NPC错误");
+                MessageBox.Show($"选择一个NPC. 未找到 NPC {npcId}.", "NPC错误");
             }
         }
 

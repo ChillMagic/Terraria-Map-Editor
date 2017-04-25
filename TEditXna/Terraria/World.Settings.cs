@@ -1,6 +1,4 @@
 using System;
-using System.ComponentModel;
-using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -48,7 +46,7 @@ namespace TEditXNA.Terraria
         {
             if (ViewModelBase.IsInDesignModeStatic) return;
 
-            var settingspath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
+            var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
             LoadObjectDbXml(settingspath);
             Sprites.Add(new Sprite());
 
@@ -57,9 +55,9 @@ namespace TEditXNA.Terraria
                 TileFrameImportant = new bool[TileCount];
                 for (int i = 0; i < TileCount; i++)
                 {
-                    if (World.TileProperties.Count > i)
+                    if (TileProperties.Count > i)
                     {
-                        TileFrameImportant[i] = World.TileProperties[i].IsFramed;
+                        TileFrameImportant[i] = TileProperties[i].IsFramed;
                     }
                 }
             }

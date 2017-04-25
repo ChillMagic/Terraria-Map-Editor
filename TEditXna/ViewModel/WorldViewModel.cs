@@ -3,22 +3,20 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.Reflection;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using TEdit.MvvmLight.Threading;
 using TEdit.Geometry.Primitives;
 using TEdit.Utility;
-using Microsoft.Win32;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
 using TEditXna.Editor.Plugins;
@@ -29,7 +27,12 @@ using TEditXna.Render;
 using TEditXNA.Terraria;
 using TEditXNA.Terraria.Objects;
 using TEditXna.View.Popups;
+using Application = System.Windows.Application;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+using Timer = System.Timers.Timer;
 
 namespace TEditXna.ViewModel
 {
@@ -109,7 +112,7 @@ namespace TEditXna.ViewModel
             if (IsInDesignModeStatic)
                 return;
 
-            CheckUpdates = Properties.Settings.Default.CheckUpdates;
+            CheckUpdates = Settings.Default.CheckUpdates;
 
             if (CheckUpdates)
                 CheckVersion();
@@ -131,7 +134,7 @@ namespace TEditXna.ViewModel
 
                 var sprite = (Sprite)o;
 
-                string [] _spriteFilterSplit = _spriteFilter.Split('/');
+                string[] _spriteFilterSplit = _spriteFilter.Split('/');
                 foreach (string _spriteWord in _spriteFilterSplit)
                 {
                     if (sprite.TileName == _spriteWord) return true;
@@ -595,79 +598,78 @@ namespace TEditXna.ViewModel
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
 	        Version cnv = App.CnVersion;
 
-            WindowTitle = string.Format("TEdit v{0}.{1}.{2}.{3} (CNv{4}.{5}.{6}.{7}) {8}",
-                fvi.ProductMajorPart, fvi.ProductMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart,
-				cnv.Major, cnv.Minor, cnv.Build, cnv.Revision,
-                Path.GetFileName(_currentFile));
+            WindowTitle =
+                $"TEdit v{fvi.ProductMajorPart}.{fvi.ProductMinorPart}.{fvi.FileBuildPart}.{fvi.FilePrivatePart} (CNv{cnv.Major}.{cnv.Minor}.{cnv.Build}.{cnv.Revision}) {Path.GetFileName(_currentFile)}";
         }
 
-        public void CheckVersion(bool auto = true)
+        public async void CheckVersion(bool auto = true)
         {
-            Task.Factory.StartNew<bool?>(() =>
+            bool isoutofdate = false;
+
+            const string versionRegex = "\"tag_name\":\\s?\"CNv(?<version>[0-9\\.]*)\"";
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/4.0");
+                    string githubReleases = await client.GetStringAsync("https://api.github.com/repos/mistzzt/Terraria-map-Editor/releases");
+                    var versions = Regex.Match(githubReleases, versionRegex);
+
+                    isoutofdate = versions.Success && IsVersionNewerThanApplicationVersion(versions.Groups[1].Value);
+                    
+                    // ignore revision, build should be enough
+                    // if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("无法获取最新版本号。", "更新检测失败");
+            }
+
+
+            if (isoutofdate && MessageBox.Show("你当前正在使用旧版本TEdit。要更新否？", "版本更新", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    using (var Client = new WebClient())
-                    {
-                        byte[] dl = Client.DownloadData("https://raw.githubusercontent.com/mistzzt/Terraria-Map-Editor/cn_master/cnversion.txt");
-
-                        string vers = Encoding.UTF8.GetString(dl);
-                        string[] verstrimmed = vers.Split('v');
-
-                        if (verstrimmed.Length != 2) return null;
-
-                        string[] split = verstrimmed[1].Split('.');
-
-                        if (split.Length < 3) return null; // SBLogic -- accept revision part if present
-
-                        int major;
-                        int minor;
-                        int build;
-                        int revis = -1;
-
-                        if (!int.TryParse(split[0], out major)) return null;
-                        if (!int.TryParse(split[1], out minor)) return null;
-                        if (!int.TryParse(split[2], out build)) return null;
-                        if ((split.Length == 4) && (split[3].Length > 0) && (!int.TryParse(split[3], out revis))) return null;
-
-                        if (major > App.CnVersion.Major) return true;
-                        if (minor > App.CnVersion.Minor) return true;
-                        if (build > App.CnVersion.Build) return true;
-                        // if ((revis != -1) && (revis > App.CnVersion.Revision)) return true;
-                    }
+                    Process.Start("https://github.com/mistzzt/Terraria-map-Editor/releases");
                 }
-                catch (Exception)
+                catch
                 {
-                    return null;
+                    // ignored
                 }
-                return false;
-            }).ContinueWith(t =>
+            }
+            else if (!auto)
             {
-                bool? isoutofdate = t.Result;
+                MessageBox.Show("你正在使用最新版本。", "版本更新");
+            }
 
-                if (isoutofdate == null)
-                {
-                    MessageBox.Show("无法检测版本.", "更新检测失败");
-                }
-                else if (isoutofdate == true)
-                {
-                    if (MessageBox.Show("现在有TEdit汉化版的可用更新. 要下载么?", "更新提示", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        try
-                        {
-                            Process.Start("https://github.com/mistzzt/Terraria-Map-Editor/releases");
-                        }
-                        catch { }
+        }
 
-                    }
-                }
-                else
-                {
-                    if (!auto)
-                        MessageBox.Show("当前版本为最新版本.", "更新提示");
-                }
+        private bool IsVersionNewerThanApplicationVersion(string version)
+        {
+            version = version.TrimStart('v');
 
-            }, TaskFactoryHelper.UiTaskScheduler);
+            string[] split = version.Split('.');
+
+            if (split.Length < 3) return false; // SBLogic -- accept revision part if present
+
+            int major;
+            int minor;
+            int build;
+            int revis = -1;
+
+            if (!int.TryParse(split[0], out major)) return false;
+            if (!int.TryParse(split[1], out minor)) return false;
+            if (!int.TryParse(split[2], out build)) return false;
+
+            if ((split.Length == 4) && (split[3].Length > 0) && (!int.TryParse(split[3], out revis))) return false;
+
+            if (major > App.CnVersion.Major) return true;
+            if (minor > App.CnVersion.Minor) return true;
+            if (build > App.CnVersion.Build) return true;
+            if (revis > App.CnVersion.Revision) return true;
+
+            return false;
         }
 
         private ICommand _analyzeWorldCommand;
@@ -686,7 +688,7 @@ namespace TEditXna.ViewModel
 
         private void AnalyzeWorldSave()
         {
-            if (this.CurrentWorld == null) return;
+            if (CurrentWorld == null) return;
             var sfd = new SaveFileDialog();
             sfd.DefaultExt = "文本文件|*.txt";
             sfd.Filter = "文本文件|*.txt";
@@ -695,7 +697,7 @@ namespace TEditXna.ViewModel
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
             {
-                TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld, sfd.FileName);
+                TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld, sfd.FileName);
 
             }
         }
@@ -707,7 +709,7 @@ namespace TEditXna.ViewModel
 
         private void TallyCountSave()
         {
-            if (this.CurrentWorld == null) return;
+            if (CurrentWorld == null) return;
             var sfd = new SaveFileDialog();
             sfd.DefaultExt = "文本文件|*.txt";
             sfd.Filter = "文本文件|*.txt";
@@ -716,7 +718,7 @@ namespace TEditXna.ViewModel
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
             {
-                TEditXNA.Terraria.KillTally.SaveTally(this.CurrentWorld, sfd.FileName);
+                KillTally.SaveTally(CurrentWorld, sfd.FileName);
 
             }
         }
@@ -731,7 +733,7 @@ namespace TEditXna.ViewModel
 
         private void AnalyzeWorld()
         {
-            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld);
+            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld);
         }
 
         private string _worldAnalysis;
@@ -752,7 +754,7 @@ namespace TEditXna.ViewModel
 
         private void GetTallyCount()
         {
-            TallyCount = TEditXNA.Terraria.KillTally.LoadTally(this.CurrentWorld);
+            TallyCount = KillTally.LoadTally(CurrentWorld);
         }
 
         private string _tallyCount;
@@ -901,7 +903,8 @@ namespace TEditXna.ViewModel
                         }
                         MinimapImage = RenderMiniMap.Render(CurrentWorld);
                         _loadTimer.Stop();
-                        OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("加载世界耗时 {0} 秒.", _loadTimer.Elapsed.TotalSeconds)));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(0,
+                            $"加载世界耗时 {_loadTimer.Elapsed.TotalSeconds} 秒."));
                         _saveTimer.Start();
                     }, TaskFactoryHelper.UiTaskScheduler);
             }
@@ -975,7 +978,8 @@ namespace TEditXna.ViewModel
                         }
                         MinimapImage = RenderMiniMap.Render(CurrentWorld);
                         _loadTimer.Stop();
-                        OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("加载世界耗费 {0} 秒.", _loadTimer.Elapsed.TotalSeconds)));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(0,
+                            $"加载世界耗费 {_loadTimer.Elapsed.TotalSeconds} 秒."));
                         _saveTimer.Start();
                     }
                     _loadTimer.Stop();

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading;
+﻿using System.Threading;
 using TEditXna.Editor.Plugins;
 using TEditXna.Editor.Tools;
 
@@ -49,6 +47,7 @@ namespace TEditXna.ViewModel
             wvm.Plugins.Add(new RemoveAllUnlockedChestsPlugin(wvm));
             wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
             wvm.Plugins.Add(new FindChestWithPlugin(wvm));
+            wvm.Plugins.Add(new FindPlanteraBulbPlugin(wvm));
             return wvm;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -7,8 +6,6 @@ using System.Windows;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
-using TEdit.Utility;
-using TEditXna.Helper;
 using TEditXNA.Terraria.Objects;
 
 namespace TEditXNA.Terraria
@@ -60,10 +57,7 @@ namespace TEditXNA.Terraria
             }
             catch (ArgumentOutOfRangeException err)
             {
-                string msg = string.Format("地图文件有问题.\r\n" + 
-                                           "{0}\r\n它不能在游戏内打开\r\n" + 
-                                           "无论如何, 你还要保存它么??\r\n"
-                                           , err.ParamName);
+                string msg = "地图文件有问题.\r\n" + $"{err.ParamName}\r\n它不能在游戏内打开\r\n" + "无论如何, 你还要保存它么??\r\n";
                 if (MessageBox.Show(msg, "地图文件错误", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
                     return;
@@ -136,13 +130,9 @@ namespace TEditXNA.Terraria
             {
 
                 string msg =
-                    string.Format("读取世界文件时发生错误. 这一般是由损坏的文件或新版本的世界文件造成.\r\n\r\n" +
-                                  "TEdit v{0}\r\n" +
-                                  "TEdit 最高支持: {1}    当前世界: {2}\r\n\r\n" +
-                                  "你想要强制加载该文件么?\r\n\r\n" +
-                                  "警告: 这样做可能会损坏地图文件或导致程序崩溃.\r\n\r\n" +
-                                   "异常消息 :\r\n{3}\r\n\r\n{4}\r\n"
-                    , TEditXna.App.Version.FileVersion, World.CompatibleVersion, curVersion, err.Message, err);
+                    "读取世界文件时发生错误. 这一般是由损坏的文件或新版本的世界文件造成.\r\n\r\n" + $"TEdit v{TEditXna.App.Version.FileVersion}\r\n" +
+                    $"TEdit 最高支持: {World.CompatibleVersion}    当前世界: {curVersion}\r\n\r\n" + "你想要强制加载该文件么?\r\n\r\n" +
+                    "警告: 这样做可能会损坏地图文件或导致程序崩溃.\r\n\r\n" + $"异常消息 :\r\n{err.Message}\r\n\r\n{err}\r\n";
                 if (MessageBox.Show(msg, "World File Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
                     return null;
@@ -298,9 +288,9 @@ namespace TEditXNA.Terraria
             OnProgressChanged(this,
                     new ProgressChangedEventArgs(0, "验证完整性..."));
             if (Chests.Count > 1000)
-                throw new ArgumentOutOfRangeException(string.Format("宝箱数量为 {0} 且大于1000.",Chests.Count));
+                throw new ArgumentOutOfRangeException($"宝箱数量为 {Chests.Count} 且大于1000.");
             if (Signs.Count > 1000)
-                throw new ArgumentOutOfRangeException(string.Format("标牌数量为 {0} 且大于1000.", Signs.Count));
+                throw new ArgumentOutOfRangeException($"标牌数量为 {Signs.Count} 且大于1000.");
         }
         public void ValSpecial(int x, int y)
         {

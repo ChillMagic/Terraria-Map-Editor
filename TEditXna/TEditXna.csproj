@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\DateStampVersion.tasks" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TEditXna</RootNamespace>
     <AssemblyName>TEditXna</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -78,14 +78,14 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.6.0.1625\lib\net40\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -126,6 +126,7 @@
     <Compile Include="Editor\Plugins\FindChestWithPluginResultView.xaml.cs">
       <DependentUpon>FindChestWithPluginResultView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editor\Plugins\FindPlanteraBulbPlugin.cs" />
     <Compile Include="Editor\Plugins\IPlugin.cs" />
     <Compile Include="Editor\Plugins\PerlinNoise.cs" />
     <Compile Include="Editor\Plugins\RemoveAllChestsPlugin.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Terraria\Map.cs" />
     <Compile Include="Terraria\Minecart.cs" />
     <Compile Include="Terraria\NPC.cs" />
+    <Compile Include="Terraria\TownManager.cs" />
     <Compile Include="Terraria\Objects\BlendRules.cs" />
     <Compile Include="Terraria\Objects\ChestProperty.cs" />
     <Compile Include="Terraria\Objects\Enums.cs" />
@@ -451,8 +453,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include=".editorconfig" />
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -504,6 +509,19 @@
     <EmbeddedResource Include="Images\Overlays\npc_wizard.png" />
     <EmbeddedResource Include="Images\Overlays\npc_goblin.png" />
     <EmbeddedResource Include="Images\Overlays\npc_santa_claus.png" />
+    <EmbeddedResource Include="Images\Toolbar\report_magnify.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_angler.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_cyborg.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_dyetrader.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_painter.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_partygirl.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_pirate.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_steampunker.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_stylist.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_tavernkeep.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_tax_collector.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_truffle.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_witch_doctor.png" />
     <Resource Include="Images\Tools\eyedropper.png" />
     <Resource Include="Images\Toolbar\arrow_redo.png" />
     <Resource Include="Images\Toolbar\arrow_undo.png" />
@@ -511,7 +529,6 @@
     <EmbeddedResource Include="Images\Overlays\grid.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Toolbar\report_magnify.png" />
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -542,7 +559,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
@@ -555,14 +572,15 @@
   </PropertyGroup>
   <ItemGroup>
     <VersionItems Include="$(SolutionDir)teditversion.txt" />
+    <VersionItems Include="$(SolutionDir)cnversion.txt" />
     <VersionItems Include="$(ProjectDir)Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
 	    -->
-  <Target Name="BeforeBuild">
+  <!--<Target Name="BeforeBuild">
     <DateStampVersion Items="@(VersionItems)" />
-  </Target>
+  </Target>-->
   <!--<Target Name="AfterBuild">
   </Target>
   -->

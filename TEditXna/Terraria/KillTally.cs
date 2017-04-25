@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
 
 namespace TEditXNA.Terraria
 {
@@ -67,13 +62,12 @@ namespace TEditXNA.Terraria
 
         private static void WriteTally(StreamWriter sb, World world)
         {
-
             int index = 0;
             int killcount = 0;
             int bannercount = 0;
             int uniquecount = 0;
 
-            StringBuilder bufferBanner = new StringBuilder(); // 很难想象之前这里用string
+            StringBuilder bufferBanner = new StringBuilder();
 			StringBuilder bufferNoBanner = new StringBuilder();
 			StringBuilder bufferNoKill = new StringBuilder();
 

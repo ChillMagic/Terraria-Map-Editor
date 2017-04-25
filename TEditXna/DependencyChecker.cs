@@ -23,7 +23,7 @@ namespace TEditXna
             // if hard coded in settings.xml try that location first
             if (!string.IsNullOrWhiteSpace(TEditXNA.Terraria.World.AltC))
             {
-                if(Directory.Exists(TEditXNA.Terraria.World.AltC))
+                if (Directory.Exists(TEditXNA.Terraria.World.AltC))
                     path = TEditXNA.Terraria.World.AltC;
             }
 
@@ -38,7 +38,7 @@ namespace TEditXna
             // SBLogic - attempt to find GOG version
             if (string.IsNullOrWhiteSpace(path))
             {
-                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games\1207665503\"))
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games\1207665503\"))
                 {
                     if (key != null)
                         path = Path.Combine((string)key.GetValue("PATH"), "Content");
@@ -49,7 +49,7 @@ namespace TEditXna
             if (string.IsNullOrWhiteSpace(path))
             {
                 // try with dionadar's fix
-                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 105600"))
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 105600"))
                 {
                     if (key != null)
                         path = Path.Combine((string)key.GetValue("InstallLocation"), "Content");
@@ -59,7 +59,7 @@ namespace TEditXna
             // if that fails, try steam path
             if (string.IsNullOrWhiteSpace(path))
             {
-                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
                 {
                     if (key != null)
                         path = key.GetValue("SteamPath") as string;
@@ -84,7 +84,7 @@ namespace TEditXna
                 while (!DirectoryHasContentFolder(tempPath) && retry)
                 {
                     if (MessageBox.Show(
-                        string.Format("当前选择的目录不包含材质.\r\n请重新选择或者取消, 然后将该目录 \r\n{0}\r\n 作为材质路径.", path),
+                            $"当前选择的目录不包含材质.\r\n请重新选择或者取消, 然后将该目录 \r\n{path}\r\n 作为材质路径.",
                         "Terraria 游戏材质未找到",
                         MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
                     {
@@ -117,7 +117,7 @@ namespace TEditXna
             //  Are we editing Steam Cloud worlds?
             if (steamUserId != null)
             {
-                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
                 {
                     if (key != null)
                     {

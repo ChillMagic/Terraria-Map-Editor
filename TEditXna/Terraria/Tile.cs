@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Documents;
-using TEdit.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
@@ -52,12 +49,14 @@ namespace TEditXNA.Terraria
         EbonsandBlock = 112,
         PearlsandBlock = 116,
         CrimsandBlock = 234,
+        PlanteraBulb = 238,
         IceByRod = 127,
         Timer = 144,
         AnnouncementBox = 425,
         Dummy = 378,
         ItemFrame = 395,
-        LogicSensor = 423
+        LogicSensor = 423,
+        Chest2 = 467
     }
 
     [Serializable]
@@ -189,7 +188,7 @@ namespace TEditXNA.Terraria
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Tile)obj);
         }
 
@@ -230,7 +229,7 @@ namespace TEditXNA.Terraria
 
         public static bool IsChest(int tileType)
         {
-            return tileType == (int)TileType.Chest || tileType == (int)TileType.Dresser;
+            return tileType == (int)TileType.Chest || tileType == (int)TileType.Dresser || tileType == (int)TileType.Chest2;
         }
 
         public static bool IsSign(int tileType)

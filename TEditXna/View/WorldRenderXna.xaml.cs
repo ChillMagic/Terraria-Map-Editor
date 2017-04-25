@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using TEdit.UI.Xaml.XnaContentHost;
-using TEdit.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TEditXNA.Terraria;
@@ -176,7 +173,7 @@ namespace TEditXna.View
 
         #region Load Content
 
-        private async void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
+        private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
         {
             // Abort rendering if in design mode or if gameTimer is already running
             if (ViewModelBase.IsInDesignModeStatic || _gameTimer.IsRunning)
@@ -213,6 +210,18 @@ namespace TEditXna.View
             _textures.Add("Wizard"         , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
             _textures.Add("Mechanic"       , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
             _textures.Add("Santa Claus"    , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
+            _textures.Add("Truffle"        , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_truffle.png", e.GraphicsDevice));
+            _textures.Add("Steampunker"    , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_steampunker.png", e.GraphicsDevice));
+            _textures.Add("Dye Trader"     , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_dyetrader.png", e.GraphicsDevice));
+            _textures.Add("Party Girl"     , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_partygirl.png", e.GraphicsDevice));
+            _textures.Add("Cyborg"         , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_cyborg.png", e.GraphicsDevice));
+            _textures.Add("Painter"        , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_painter.png", e.GraphicsDevice));
+            _textures.Add("Witch Doctor"   , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_witch_doctor.png", e.GraphicsDevice));
+            _textures.Add("Pirate"         , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_pirate.png", e.GraphicsDevice));
+            _textures.Add("Stylist"        , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_stylist.png", e.GraphicsDevice));
+            _textures.Add("Angler"         , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_angler.png", e.GraphicsDevice));
+            _textures.Add("Tax Collector"  , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_tax_collector.png", e.GraphicsDevice));
+            _textures.Add("Tavernkeep"     , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_tavernkeep.png", e.GraphicsDevice));
             _textures.Add("Grid"           , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.grid.png", e.GraphicsDevice));
         }
 
@@ -265,6 +274,7 @@ namespace TEditXna.View
                 catch (Exception ex)
                 {
                     ErrorLogging.LogException(ex);
+                    ErrorLogging.Log(e.GraphicsDevice.GraphicsDeviceStatus.ToString());
                 }
             }
 
@@ -442,7 +452,7 @@ namespace TEditXna.View
         private void DrawSprites()
         {
             Rectangle visibleBounds = GetViewingArea();
-            TEditXna.Terraria.Objects.BlendRules blendRules = TEditXna.Terraria.Objects.BlendRules.Instance;
+            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
             var width  = _wvm.CurrentWorld.TilesWide;
             var height = _wvm.CurrentWorld.TilesHigh;
 
@@ -1823,15 +1833,27 @@ namespace TEditXna.View
                     DrawNpcOverlay(npc);
             }
 
-            _spriteBatch.Draw(_textures["Spawn"],
+            _spriteBatch.Draw(
+                _textures["Spawn"],
                 GetOverlayLocation(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY),
-                              color: Color.FromNonPremultiplied(255, 255, 255, 128),
-                              layerDepth: LayerLocations);
+                _textures["Spawn"].Bounds,
+                Color.FromNonPremultiplied(255, 255, 255, 128),
+                0f,
+                Vector2.Zero,
+                Vector2.One,
+                SpriteEffects.None,
+                LayerLocations);
 
-            _spriteBatch.Draw(_textures["Dungeon"],
-                              GetOverlayLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
-                              color: Color.FromNonPremultiplied(255, 255, 255, 128),
-                              layerDepth: LayerLocations);
+            _spriteBatch.Draw(
+                _textures["Dungeon"],
+                GetOverlayLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
+                _textures["Dungeon"].Bounds,
+                Color.FromNonPremultiplied(255, 255, 255, 128),
+                0f,
+                Vector2.Zero,
+                Vector2.One,
+                SpriteEffects.None,
+                LayerLocations);
         }
 
         private void DrawNpcTexture(NPC npc)
@@ -1841,7 +1863,7 @@ namespace TEditXna.View
             if (_textureDictionary.Npcs.ContainsKey(npcId))
             {
                 Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
-                int frames = TEditXNA.Terraria.World.NpcFrames[npcId];
+                int frames = World.NpcFrames[npcId];
                 int width = npcTexture.Width;
                 int height = npcTexture.Height / frames;
                 float scale = 1.0f * _zoom / 16;
@@ -1862,9 +1884,16 @@ namespace TEditXna.View
 
             if (_textures.ContainsKey(npcName))
             {
-                _spriteBatch.Draw(_textures[npcName],
-                                  GetOverlayLocation(npc.Home.X, npc.Home.Y),
-                                  color: Color.White, layerDepth: LayerLocations);
+                _spriteBatch.Draw(
+                    _textures[npcName],
+                    GetOverlayLocation(npc.Home.X, npc.Home.Y),
+                    _textures[npcName].Bounds,
+                    Color.FromNonPremultiplied(255, 255, 255, 128),
+                    0f,
+                    Vector2.Zero,
+                    Vector2.One,
+                    SpriteEffects.None,
+                    LayerLocations);
             }
         }
 
@@ -2074,6 +2103,21 @@ namespace TEditXna.View
             Vector2Int32 curTile = _wvm.MouseOverTile.MouseState.Location;
             _zoom = MathHelper.Clamp(tempZoom, 0.125F, 64F);
             CenterOnTile(curTile.X, curTile.Y);
+
+            if (_wvm.CurrentWorld != null)
+            {
+                var r = GetViewingArea();
+                ScrollBarH.ViewportSize = r.Width;
+                ScrollBarV.ViewportSize = r.Height;
+                ScrollBarH.Maximum = _wvm.CurrentWorld.TilesWide - ScrollBarH.ViewportSize;
+                ScrollBarV.Maximum = _wvm.CurrentWorld.TilesHigh - ScrollBarV.ViewportSize;
+            }
+        }
+
+        public void ZoomFocus(int x, int y)
+        {
+            _zoom = 8;
+            CenterOnTile(x, y);
 
             if (_wvm.CurrentWorld != null)
             {
