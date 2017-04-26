@@ -1,6 +1,6 @@
 $source = ".\TEditXna\bin\Release"
-$version = Get-Content .\teditversion.txt
-$destination = ".\build\TEdit3_BETA_$version.zip"
+$version = Get-Content .\cnversion.txt
+$destination = ".\build\TEdit3_CN_$version.zip"
 
 if (!(Test-Path -path .\build))
 {
@@ -13,6 +13,6 @@ Write-Host "Zipping $source ..." -ForegroundColor Yellow
 
 Add-Type -assembly "system.io.compression.filesystem"
 
-[io.compression.zipfile]::CreateFromDirectory($Source, $destination) 
+[io.compression.zipfile]::CreateFromDirectory([System.IO.Path]::Combine($PSScriptRoot, $Source), [System.IO.Path]::Combine($PSScriptRoot, $destination)) 
 
 Write-Host "Created $destination." -ForegroundColor Green

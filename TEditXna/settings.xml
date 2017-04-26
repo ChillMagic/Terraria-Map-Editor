@@ -63,14 +63,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
   <!--SteamUserId>0</SteamUserId-->
   <App Width="1024" Height="768" ClipboardRenderSize="512" />
   <ShortCutKeys>
-    <Shortcut Key="A"   Tool="Arrow"        />
-    <Shortcut Key="B"   Tool="Brush"        />
-    <Shortcut Key="F"   Tool="Fill"         />
-    <Shortcut Key="E"   Tool="Pencil"       />
-    <Shortcut Key="R"   Tool="Picker"       />
-    <Shortcut Key="P"   Tool="Point"        />
-    <Shortcut Key="S"   Tool="Selection"    />
-    <Shortcut Key="T"   Tool="Sprite"       />
+    <Shortcut Key="A"   Tool="光标"        />
+    <Shortcut Key="B"   Tool="刷子"        />
+    <Shortcut Key="F"   Tool="填充"         />
+    <Shortcut Key="E"   Tool="铅笔"       />
+    <Shortcut Key="R"   Tool="拾色器"       />
+    <Shortcut Key="P"   Tool="点"        />
+    <Shortcut Key="S"   Tool="区域选择"    />
+    <Shortcut Key="T"   Tool="物件"       />
     <Shortcut Key="Z"   Tool="Eraser"       />
     <Shortcut Key="X"   Tool="Swap"         />
   </ShortCutKeys>
