@@ -1,7 +1,5 @@
-# Terraria Map Editor - BinaryConstruct  
-[![Build status](https://ci.appveyor.com/api/projects/status/xi3k3j54un10a0o4?svg=true)](https://ci.appveyor.com/project/BinaryConstruct/terraria-map-editor) 
-[![GitHub issues](https://img.shields.io/github/issues/TEdit/Terraria-Map-Editor.svg)](https://waffle.io/TEdit/Terraria-Map-Editor)
-[![GitHub Version](https://img.shields.io/github/tag/TEdit/Terraria-Map-Editor.svg?label=GitHub)](https://github.com/TEdit/Terraria-Map-Editor)
+# TEdit 中文版
+最新编译版：[![编译状态](https://ci.appveyor.com/api/projects/status/vu5roy4c6epctdtq?svg=true)](https://ci.appveyor.com/project/mistzzt/terraria-map-editor/build/artifacts) 
 
 Terraria Map Editor, TEdit, is a stand alone, open source map editor for Terraria. It lets you edit maps just like (almost) paint!
 
