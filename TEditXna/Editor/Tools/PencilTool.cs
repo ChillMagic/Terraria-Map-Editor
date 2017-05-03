@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
@@ -19,7 +19,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/pencil.png"));
-            Name = "Ǧ��";
+            Name = "铅笔";
             IsActive = false;
             ToolType = ToolType.Pixel;
         }

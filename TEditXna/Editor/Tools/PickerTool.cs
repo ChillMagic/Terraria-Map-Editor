@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Input;
 using System.Linq;
 using System.Windows.Media.Imaging;
@@ -14,7 +14,7 @@ namespace TEditXna.Editor.Tools
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/eyedropper.png"));
             ToolType = ToolType.Pixel;
-            Name = "ʰɫ��"; // todo: Picker - ѡȡ���orѡȡorʰɫorʰɫ��
+            Name = "拾色器"; // todo: Picker - 选取物块or选取or拾色or拾色器
         }
 
         public override void MouseDown(TileMouseState e)

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -25,7 +25,7 @@ namespace TEditXna.Editor.Tools
             _preview.SetPixel(0, 0, 127, 0, 90, 255);
 
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/shape_square.png"));
-            Name = "ÇøÓòÑ¡Ôñ";
+            Name = "åŒºåŸŸé€‰æ‹©";
             IsActive = false;
         }
 

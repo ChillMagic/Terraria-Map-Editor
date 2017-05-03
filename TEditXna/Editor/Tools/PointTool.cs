@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -14,7 +14,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/point.png"));
-            Name = "µã"; // ×¢ÒâMainWindowÄÚÊı¾İ°ó¶¨
+            Name = "ç‚¹"; // æ³¨æ„MainWindowå†…æ•°æ®ç»‘å®š
             IsActive = false;
             ToolType = ToolType.Npc;
         }
@@ -32,12 +32,12 @@ namespace TEditXna.Editor.Tools
                 }
                 else
                 {
-                    if (string.Equals(_wvm.SelectedPoint, "³öÉúµã", StringComparison.InvariantCultureIgnoreCase))
+                    if (string.Equals(_wvm.SelectedPoint, "å‡ºç”Ÿç‚¹", StringComparison.InvariantCultureIgnoreCase))
                     {
                         _wvm.CurrentWorld.SpawnX = e.Location.X;
                         _wvm.CurrentWorld.SpawnY = e.Location.Y;
                     }
-                    else if (string.Equals(_wvm.SelectedPoint, "µØÀÎ", StringComparison.InvariantCultureIgnoreCase))
+                    else if (string.Equals(_wvm.SelectedPoint, "åœ°ç‰¢", StringComparison.InvariantCultureIgnoreCase))
                     {
                         _wvm.CurrentWorld.DungeonX = e.Location.X;
                         _wvm.CurrentWorld.DungeonY = e.Location.Y;

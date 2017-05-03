@@ -1,4 +1,4 @@
-using System.Windows;
+ï»¿using System.Windows;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 
@@ -9,7 +9,7 @@ namespace TEditXna.Editor.Plugins
         public ReplaceAllPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Ìæ»»ËùÓĞÎï¿é";
+            Name = "æ›¿æ¢æ‰€æœ‰ç‰©å—";
         }
 
 
@@ -32,13 +32,13 @@ namespace TEditXna.Editor.Plugins
 
             if (replaceTiles && _wvm.TilePicker.TileMaskMode == MaskMode.Off)
             {
-                MessageBox.Show("¿ªÆôÉ¸Ñ¡Îï¿éÒÔÆôÓÃÌæ»»Îï¿é.");
+                MessageBox.Show("å¼€å¯ç­›é€‰ç‰©å—ä»¥å¯ç”¨æ›¿æ¢ç‰©å—.");
                 return;
             }
 
             if (replaceWalls && _wvm.TilePicker.WallMaskMode == MaskMode.Off)
             {
-                MessageBox.Show("¿ªÆôÉ¸Ñ¡Ç½±ÚÒÔÆôÓÃÌæ»»Îï¿é.");
+                MessageBox.Show("å¼€å¯ç­›é€‰å¢™å£ä»¥å¯ç”¨æ›¿æ¢ç‰©å—.");
                 return;
             }
 

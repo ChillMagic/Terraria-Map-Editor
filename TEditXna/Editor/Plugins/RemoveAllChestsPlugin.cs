@@ -1,4 +1,4 @@
-using System.Linq;
+ï»¿using System.Linq;
 using System.Windows;
 using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
@@ -11,14 +11,14 @@ namespace TEditXna.Editor.Plugins
         public RemoveAllChestsPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "É¾³ıËùÓĞ±¦Ïä";
+            Name = "åˆ é™¤æ‰€æœ‰å®ç®±";
         }
 
         public override void Execute()
         {
             if (_wvm.CurrentWorld == null) return;
 
-            if (MessageBox.Show("ÄãÈ·¶¨ÒªÉ¾³ıËùÓĞ±¦ÏäÂğ?", "É¾³ı±¦Ïä",
+            if (MessageBox.Show("ä½ ç¡®å®šè¦åˆ é™¤æ‰€æœ‰å®ç®±å—?", "åˆ é™¤å®ç®±",
                         MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK)
                 return;
 

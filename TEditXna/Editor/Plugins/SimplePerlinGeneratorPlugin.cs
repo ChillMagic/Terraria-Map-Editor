@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using Microsoft.Xna.Framework;
 using TEditXna.ViewModel;
 using TEditXNA.Terraria;
@@ -12,7 +12,7 @@ namespace TEditXna.Editor.Plugins
             : base(worldViewModel)
         {
             _noiseGenerator = new PerlinNoise(1);
-            Name = "¼òµ¥¿óÊ¯Éú³É";
+            Name = "ç®€å•çŸ¿çŸ³ç”Ÿæˆ";
         }
 
         public override void Execute()

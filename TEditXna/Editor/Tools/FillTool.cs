@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
@@ -20,7 +20,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paintcan.png"));
-            Name = "Ìî³ä";
+            Name = "å¡«å……";
             ToolType = ToolType.Pixel;
         }
 

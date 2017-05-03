@@ -1,4 +1,4 @@
-using TEditXNA.Terraria;
+ï»¿using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Plugins
@@ -8,7 +8,7 @@ namespace TEditXna.Editor.Plugins
         public UnlockAllChestsPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "½âËøËùÓĞ±¦Ïä";
+            Name = "è§£é”æ‰€æœ‰å®ç®±";
         }
 
         private short[] _lockedChestUs = new short[] { 72, 144, 828, 864, 900, 936, 972 };

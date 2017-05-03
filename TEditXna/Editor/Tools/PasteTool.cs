@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -15,7 +15,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paste.png"));
-            Name = "Õ³Ìù";
+            Name = "ç²˜è´´";
             IsActive = false;
             ToolType = ToolType.Pixel;
         }
@@ -30,7 +30,7 @@ namespace TEditXna.Editor.Tools
             if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
             {
                
-                _wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "¹â±ê")); // ¹¤¾ßÃû
+                _wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "å…‰æ ‡")); // å·¥å…·å
             }
         }
 

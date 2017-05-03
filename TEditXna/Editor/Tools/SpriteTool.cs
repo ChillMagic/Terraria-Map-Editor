@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
@@ -21,7 +21,7 @@ namespace TEditXna.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/sprite.png"));
-            Name = "Îï¼ş"; // todo: Sprite Ğ¡¾«Áé/Îï¼ş
+            Name = "ç‰©ä»¶"; // todo: Sprite å°ç²¾çµ/ç‰©ä»¶
             IsActive = false;
             ToolType = ToolType.Pixel;
         }

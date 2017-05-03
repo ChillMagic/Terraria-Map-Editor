@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEditXNA.Terraria;
@@ -16,7 +16,7 @@ namespace TEditXna.Editor.Tools
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/cursor.png"));
             ToolType = ToolType.Pixel;
-            Name = "¹â±ê";
+            Name = "å…‰æ ‡";
         }
 
         private bool _rightClick;

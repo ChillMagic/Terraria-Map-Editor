@@ -1,4 +1,4 @@
-using TEditXna.ViewModel;
+Ôªøusing TEditXna.ViewModel;
 using System.Linq;
 using TEditXna.Terraria.Objects;
 
@@ -9,7 +9,7 @@ namespace TEditXna.Editor.Plugins
         public SandSettlePlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "∆Ω∫‚…≥◊”";
+            Name = "Âπ≥Ë°°Ê≤ôÂ≠ê";
         }
 
         public override void Execute()

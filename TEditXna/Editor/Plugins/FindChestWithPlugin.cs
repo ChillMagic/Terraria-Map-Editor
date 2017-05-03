@@ -11,7 +11,7 @@ namespace TEditXna.Editor.Plugins
         public FindChestWithPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Ìõ¼ş²éÕÒ±¦Ïä";
+            Name = "æ¡ä»¶æŸ¥æ‰¾å®ç®±";
         }
 
         public override void Execute()

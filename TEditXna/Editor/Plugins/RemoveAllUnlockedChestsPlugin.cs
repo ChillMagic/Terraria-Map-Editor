@@ -1,4 +1,4 @@
-using System.Linq;
+锘縰sing System.Linq;
 using System.Windows;
 using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
@@ -11,7 +11,7 @@ namespace TEditXna.Editor.Plugins
         public RemoveAllUnlockedChestsPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "去除所有未上锁宝箱";
+            Name = "鍘婚櫎鎵�鏈夋湭涓婇攣瀹濈";
         }
 
         private short[] _lockedChestUs = new short[] { 72, 144, 828, 864, 900, 936, 972 };
@@ -31,7 +31,7 @@ namespace TEditXna.Editor.Plugins
             if (_wvm.CurrentWorld == null) return;
 
             if (
-                MessageBox.Show("你确定要删除所有未上锁的宝箱吗?", "删除宝箱",
+                MessageBox.Show("浣犵‘瀹氳鍒犻櫎鎵�鏈夋湭涓婇攣鐨勫疂绠卞悧?", "鍒犻櫎瀹濈",
                     MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK)
                 return;
 
