@@ -1,6 +1,6 @@
 $source = ".\TEditXna\bin\Release"
 $version = Get-Content .\cnversion.txt
-$destination = ".\build\TEdit3_CN_$version.zip"
+$destination = ".\build\TEdit3_build_$env:APPVEYOR_BUILD_VERSION.zip"
 
 if (!(Test-Path -path .\build))
 {

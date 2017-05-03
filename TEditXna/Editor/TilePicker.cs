@@ -9,13 +9,13 @@ namespace TEditXna.Editor
     {
         [Description("不变化")]
         NoAction = -2,
-        [Description("Set Solid")] // todo: 找到这些的具体功能 (疑似在现有版本未出现)
+        [Description("初始状态")] // todo: 找到这些的具体功能 (疑似在现有版本未出现)
         Solid = -1,
-        [Description("Half Block")]
+        [Description("切半")]
         HalfBlock = 0,
-        [Description("Ramp Left")]
+        [Description("左斜")]
         RampLeft = 1,
-        [Description("Ramp Right")]
+        [Description("右斜")]
         RampRight = 2
     }
 

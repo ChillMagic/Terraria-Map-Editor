@@ -1,16 +1,16 @@
-using System.ComponentModel;
+ï»¿using System.ComponentModel;
 
 namespace TEditXna.Editor
 {
     public enum MaskMode
     {
-        [Description("¹Ø±ÕÉ¸Ñ¡±à¼­")] // Disable Mask ÓĞÃ»ÓĞ¸üºÃµÄ·­Òë? Áí¼û ReplaceAllPlugin.cs
+        [Description("å…³é—­ç­›é€‰ç¼–è¾‘")] // Disable Mask æœ‰æ²¡æœ‰æ›´å¥½çš„ç¿»è¯‘? å¦è§ ReplaceAllPlugin.cs
         Off,
-        [Description("±à¼­¿Õ°×²¿·Ö")]
+        [Description("ç¼–è¾‘ç©ºç™½éƒ¨åˆ†")]
         Empty,
-        [Description("±à¼­·ûºÏÌõ¼ş²¿·Ö")]
+        [Description("ç¼–è¾‘ç¬¦åˆæ¡ä»¶éƒ¨åˆ†")]
         Match,
-        [Description("±à¼­²»·ûÌõ¼ş²¿·Ö")]
+        [Description("ç¼–è¾‘ä¸ç¬¦æ¡ä»¶éƒ¨åˆ†")]
         NotMatching,
     }
 }
