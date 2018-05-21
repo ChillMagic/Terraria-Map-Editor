@@ -20,7 +20,7 @@ namespace TEditXna
 
         public static FileVersionInfo Version { get; set; }
 		
-		public static Version CnVersion { get; } = new Version(1, 7, 1, 0);
+		public static Version CnVersion { get; } = new Version(1, 8, 0, 0);
 
         protected override void OnStartup(StartupEventArgs e)
         {
